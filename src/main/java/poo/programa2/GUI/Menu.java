@@ -15,6 +15,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -140,6 +141,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void jugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarButtonActionPerformed
         // TODO add your handling code here:
+          dispose();
+          JugarFrame window = new JugarFrame();
+          window.setVisible(true);
     }//GEN-LAST:event_jugarButtonActionPerformed
 
     private void ConfigurarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfigurarButtonActionPerformed
