@@ -4,7 +4,8 @@
  */
 
 package poo.programa2;
-
+import poo.programa2.GUI.Menu;
+   
 /**
  *
  * @author Dandiego
@@ -12,6 +13,6 @@ package poo.programa2;
 public class Programa2 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new Menu().setVisible(true);
     }
 }
