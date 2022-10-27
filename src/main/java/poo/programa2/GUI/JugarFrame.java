@@ -9,7 +9,8 @@ package poo.programa2.GUI;
  * @author dandi
  */
 public class JugarFrame extends javax.swing.JFrame {
-
+      private final char and = '∧';
+      private final char or = '∨';
       /**
        * Creates new form JugarFrame
        */
@@ -56,6 +57,31 @@ public class JugarFrame extends javax.swing.JFrame {
             Btn41 = new javax.swing.JButton();
             Btn42 = new javax.swing.JButton();
             Btn43 = new javax.swing.JButton();
+            panelgrid = new javax.swing.JPanel();
+            Op001 = new javax.swing.JLabel();
+            Op101 = new javax.swing.JLabel();
+            Op201 = new javax.swing.JLabel();
+            Op301 = new javax.swing.JLabel();
+            Op501 = new javax.swing.JLabel();
+            jPanel3 = new javax.swing.JPanel();
+            Op012 = new javax.swing.JLabel();
+            Op112 = new javax.swing.JLabel();
+            Op212 = new javax.swing.JLabel();
+            Op312 = new javax.swing.JLabel();
+            Op412 = new javax.swing.JLabel();
+            jPanel4 = new javax.swing.JPanel();
+            Op023 = new javax.swing.JLabel();
+            Op123 = new javax.swing.JLabel();
+            Op223 = new javax.swing.JLabel();
+            Op323 = new javax.swing.JLabel();
+            Op423 = new javax.swing.JLabel();
+            jPanel5 = new javax.swing.JPanel();
+            jPanel6 = new javax.swing.JPanel();
+            Op034 = new javax.swing.JLabel();
+            Op134 = new javax.swing.JLabel();
+            Op234 = new javax.swing.JLabel();
+            Op334 = new javax.swing.JLabel();
+            Op434 = new javax.swing.JLabel();
             NombreTXT = new javax.swing.JLabel();
             NumbersPanel = new javax.swing.JPanel();
             Btn1 = new javax.swing.JButton();
@@ -74,34 +100,55 @@ public class JugarFrame extends javax.swing.JFrame {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             setBackground(new java.awt.Color(255, 255, 255));
+            getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-            jLabel2.setBackground(new java.awt.Color(255, 0, 0));
+            jLabel2.setBackground(new java.awt.Color(153, 0, 0));
             jLabel2.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
             jLabel2.setText("Futoshiki");
+            jLabel2.setOpaque(true);
+            getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 0, 110, -1));
 
             jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             jLabel1.setText("NIVEL");
+            getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 51, -1, -1));
 
             jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             jLabel3.setText("Nombre del jugador");
+            getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 101, -1, -1));
 
             NivelTXT.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            getContentPane().add(NivelTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 51, 380, 25));
+
+            jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
             Btn03.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn03, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 27, 55, 47));
 
             Btn04.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn04, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 27, 55, 47));
 
             Btn10.setBackground(new java.awt.Color(255, 255, 255));
+            Btn10.addActionListener(new java.awt.event.ActionListener() {
+                  public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        Btn10ActionPerformed(evt);
+                  }
+            });
+            jPanel1.add(Btn10, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 119, 50, 47));
 
             Btn11.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn11, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 119, 55, 47));
 
             Btn12.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 55, 47));
 
             Btn13.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn13, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 119, 55, 47));
 
             Btn14.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn14, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 119, 55, 47));
 
             Btn00.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn00, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 27, 55, 47));
 
             Btn01.setBackground(new java.awt.Color(255, 255, 255));
             Btn01.addActionListener(new java.awt.event.ActionListener() {
@@ -109,159 +156,172 @@ public class JugarFrame extends javax.swing.JFrame {
                         Btn01ActionPerformed(evt);
                   }
             });
+            jPanel1.add(Btn01, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 27, 55, 47));
 
             Btn02.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn02, new org.netbeans.lib.awtextra.AbsoluteConstraints(227, 27, 55, 47));
 
             Btn20.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn20, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 193, 55, 47));
 
             Btn21.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn21, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 193, 55, 47));
 
             Btn22.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn22, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 55, 47));
 
             Btn23.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn23, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 190, 50, 47));
 
             Btn24.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn24, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 55, 47));
 
             Btn44.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn44, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 355, 55, 47));
 
             Bt30.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Bt30, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 276, 55, 47));
 
             Btn31.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn31, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 276, 55, 47));
 
             Btn32.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn32, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 277, 55, 50));
 
             Btn33.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn33, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 276, 50, 50));
 
             Btn34.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn34, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 276, 55, 47));
 
             Btn40.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn40, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 355, 55, 47));
 
             Btn41.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn41, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 50, 50));
 
             Btn42.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn42, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 55, 50));
 
             Btn43.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.add(Btn43, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 55, 47));
 
-            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-            jPanel1.setLayout(jPanel1Layout);
-            jPanel1Layout.setHorizontalGroup(
-                  jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                              .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                          .addComponent(Bt30, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                          .addComponent(Btn40, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                          .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(Btn42, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(44, 44, 44)
-                                                .addComponent(Btn43, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(47, 47, 47)
-                                                .addComponent(Btn44, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(Btn32, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(44, 44, 44)
-                                                .addComponent(Btn33, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(47, 47, 47)
-                                                .addComponent(Btn34, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                              .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                          .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                      .addComponent(Btn00, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                      .addComponent(Btn10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 0, 0))
-                                          .addComponent(Btn20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(Btn21, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                      .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                  .addComponent(Btn01, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                  .addGap(45, 45, 45)
-                                                                  .addComponent(Btn02, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                  .addComponent(Btn11, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                  .addComponent(Btn12, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                      .addGap(44, 44, 44)
-                                                      .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                            .addComponent(Btn03, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(Btn13, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                      .addGap(47, 47, 47)
-                                                      .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                            .addComponent(Btn04, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(Btn14, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addComponent(Btn31, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(Btn41, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                          .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(160, 160, 160)
-                                                .addComponent(Btn22, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(44, 44, 44)
-                                                .addComponent(Btn23, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(47, 47, 47)
-                                                .addComponent(Btn24, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(408, 408, 408))
+            panelgrid.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            Op001.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op001.setText("hhhhhh");
+            panelgrid.add(Op001, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 41, -1, -1));
+
+            Op101.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+            Op101.setText(">");
+            panelgrid.add(Op101, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 20, -1));
+
+            Op201.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op201.setText("∧");
+            panelgrid.add(Op201, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 206, -1, -1));
+
+            Op301.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op301.setText("∨");
+            panelgrid.add(Op301, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 293, -1, -1));
+
+            Op501.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op501.setText("jLabel4");
+            panelgrid.add(Op501, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 366, -1, -1));
+
+            jPanel1.add(panelgrid, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 0, -1, 402));
+
+            jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            Op012.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op012.setText("jLabel4");
+            jPanel3.add(Op012, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 30, -1, -1));
+
+            Op112.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op112.setText("jLabel4");
+            jPanel3.add(Op112, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 126, -1, -1));
+
+            Op212.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op212.setText("jLabel4");
+            jPanel3.add(Op212, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 194, -1, -1));
+
+            Op312.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op312.setText("jLabel4");
+            jPanel3.add(Op312, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 281, -1, -1));
+
+            Op412.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op412.setText("jLabel4");
+            jPanel3.add(Op412, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 357, -1, -1));
+
+            jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 50, 400));
+
+            jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            Op023.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op023.setText("jLabel4");
+            jPanel4.add(Op023, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 46, -1));
+
+            Op123.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op123.setText("jLabel4");
+            jPanel4.add(Op123, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 113, -1, -1));
+
+            Op223.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op223.setText("jLabel4");
+            jPanel4.add(Op223, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 183, -1, -1));
+
+            Op323.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op323.setText("jLabel4");
+            jPanel4.add(Op323, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 273, -1, -1));
+
+            Op423.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op423.setText("jLabel4");
+            jPanel4.add(Op423, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 346, -1, -1));
+
+            jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 40, 400));
+
+            javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+            jPanel5.setLayout(jPanel5Layout);
+            jPanel5Layout.setHorizontalGroup(
+                  jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGap(0, 40, Short.MAX_VALUE)
             );
-            jPanel1Layout.setVerticalGroup(
-                  jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                          .addComponent(Btn02, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                          .addComponent(Btn03, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                          .addComponent(Btn04, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                          .addComponent(Btn00, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(45, 45, 45))
-                              .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(Btn01, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Btn13, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                          .addComponent(Btn12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                          .addComponent(Btn11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                          .addComponent(Btn10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                              .addComponent(Btn14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(27, 27, 27)
-                                    .addComponent(Btn20, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                          .addComponent(Btn21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                          .addComponent(Btn22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                          .addComponent(Btn23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                          .addComponent(Btn24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                              .addComponent(Btn31, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(Bt30, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(Btn32, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(Btn33, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(Btn34, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Btn40, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Btn41, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Btn42, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Btn43, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addComponent(Btn44, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            jPanel5Layout.setVerticalGroup(
+                  jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGap(0, 100, Short.MAX_VALUE)
             );
+
+            jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 40, -1));
+
+            jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            Op034.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op034.setText("jLabel4");
+            jPanel6.add(Op034, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 20, -1, -1));
+
+            Op134.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op134.setText("jLabel4");
+            jPanel6.add(Op134, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 112, -1, -1));
+
+            Op234.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op234.setText("jLabel4");
+            jPanel6.add(Op234, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 182, -1, -1));
+
+            Op334.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op334.setText("jLabel4");
+            jPanel6.add(Op334, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 271, -1, -1));
+
+            Op434.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Op434.setText("jLabel4");
+            jPanel6.add(Op434, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 348, -1, -1));
+
+            jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 50, 390));
+
+            getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 144, 486, 415));
 
             NombreTXT.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             NombreTXT.setText("hola");
+            getContentPane().add(NombreTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 101, 299, -1));
+
+            NumbersPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
             Btn1.setBackground(new java.awt.Color(255, 255, 255));
             Btn1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
@@ -272,6 +332,7 @@ public class JugarFrame extends javax.swing.JFrame {
                         Btn1ActionPerformed(evt);
                   }
             });
+            NumbersPanel.add(Btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 11, 51, 48));
 
             Btn2.setBackground(new java.awt.Color(255, 255, 255));
             Btn2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
@@ -282,6 +343,7 @@ public class JugarFrame extends javax.swing.JFrame {
                         Btn2ActionPerformed(evt);
                   }
             });
+            NumbersPanel.add(Btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 98, 51, 48));
 
             Btn3.setBackground(new java.awt.Color(255, 255, 255));
             Btn3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
@@ -292,6 +354,7 @@ public class JugarFrame extends javax.swing.JFrame {
                         Btn3ActionPerformed(evt);
                   }
             });
+            NumbersPanel.add(Btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 175, 51, 48));
 
             Btn4.setBackground(new java.awt.Color(255, 255, 255));
             Btn4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
@@ -302,6 +365,7 @@ public class JugarFrame extends javax.swing.JFrame {
                         Btn4ActionPerformed(evt);
                   }
             });
+            NumbersPanel.add(Btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 260, 51, 48));
 
             Btn5.setBackground(new java.awt.Color(255, 255, 255));
             Btn5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
@@ -312,159 +376,57 @@ public class JugarFrame extends javax.swing.JFrame {
                         Btn5ActionPerformed(evt);
                   }
             });
+            NumbersPanel.add(Btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 335, 51, 48));
 
-            javax.swing.GroupLayout NumbersPanelLayout = new javax.swing.GroupLayout(NumbersPanel);
-            NumbersPanel.setLayout(NumbersPanelLayout);
-            NumbersPanelLayout.setHorizontalGroup(
-                  NumbersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NumbersPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(NumbersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                              .addComponent(Btn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                              .addComponent(Btn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                              .addComponent(Btn3, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                              .addComponent(Btn4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                              .addComponent(Btn5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
-                        .addGap(24, 24, 24))
-            );
-            NumbersPanelLayout.setVerticalGroup(
-                  NumbersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(NumbersPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(Btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(Btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(Btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(Btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))
-            );
+            getContentPane().add(NumbersPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 151, -1, -1));
 
             IniciarJuego.setBackground(new java.awt.Color(204, 0, 0));
             IniciarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             IniciarJuego.setForeground(new java.awt.Color(0, 0, 0));
             IniciarJuego.setText("Iniciar Juego");
+            getContentPane().add(IniciarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 577, -1, 52));
 
             BorrarJugada.setBackground(new java.awt.Color(0, 204, 255));
             BorrarJugada.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             BorrarJugada.setForeground(new java.awt.Color(0, 0, 0));
             BorrarJugada.setText("Borrar Jugada");
+            getContentPane().add(BorrarJugada, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 577, -1, 52));
 
             RehacerJugada.setBackground(new java.awt.Color(255, 153, 0));
             RehacerJugada.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             RehacerJugada.setForeground(new java.awt.Color(0, 0, 0));
             RehacerJugada.setText("Rehacer Jugada");
+            getContentPane().add(RehacerJugada, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 577, -1, 52));
 
             TerminarJuego.setBackground(new java.awt.Color(0, 153, 0));
             TerminarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             TerminarJuego.setForeground(new java.awt.Color(0, 0, 0));
             TerminarJuego.setText("Terminar Juego");
+            getContentPane().add(TerminarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 640, -1, 52));
 
             Top11.setBackground(new java.awt.Color(255, 255, 0));
             Top11.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             Top11.setForeground(new java.awt.Color(0, 0, 0));
             Top11.setText("Top 10");
+            getContentPane().add(Top11, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 577, -1, 52));
 
             TerminarJuego1.setBackground(new java.awt.Color(153, 204, 255));
             TerminarJuego1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             TerminarJuego1.setForeground(new java.awt.Color(0, 0, 0));
             TerminarJuego1.setText("Borrar Juego");
+            getContentPane().add(TerminarJuego1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 640, -1, 52));
 
             GuardarJuego.setBackground(new java.awt.Color(255, 255, 255));
             GuardarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             GuardarJuego.setForeground(new java.awt.Color(0, 0, 0));
             GuardarJuego.setText("Guardar Juego");
+            getContentPane().add(GuardarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 635, -1, -1));
 
             CargarJuego.setBackground(new java.awt.Color(255, 255, 255));
             CargarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             CargarJuego.setForeground(new java.awt.Color(0, 0, 0));
             CargarJuego.setText("Cargar Juego");
-
-            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-            getContentPane().setLayout(layout);
-            layout.setHorizontalGroup(
-                  layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addGroup(layout.createSequentialGroup()
-                                    .addGap(25, 25, 25)
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                          .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(NivelTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                          .addComponent(NombreTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                          .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(39, 39, 39)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                      .addComponent(Top11)
-                                                      .addComponent(NumbersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                              .addGroup(layout.createSequentialGroup()
-                                    .addGap(354, 354, 354)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addGroup(layout.createSequentialGroup()
-                                    .addGap(166, 166, 166)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                          .addGroup(layout.createSequentialGroup()
-                                                .addComponent(IniciarJuego)
-                                                .addGap(27, 27, 27)
-                                                .addComponent(BorrarJugada))
-                                          .addComponent(TerminarJuego))
-                                    .addGap(40, 40, 40)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                          .addComponent(RehacerJugada)
-                                          .addGroup(layout.createSequentialGroup()
-                                                .addComponent(TerminarJuego1)
-                                                .addGap(57, 57, 57)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                      .addComponent(CargarJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                      .addComponent(GuardarJuego))))))
-                        .addGap(0, 59, Short.MAX_VALUE))
-            );
-            layout.setVerticalGroup(
-                  layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addGroup(layout.createSequentialGroup()
-                                    .addGap(19, 19, 19)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                          .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                          .addComponent(NivelTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(25, 25, 25)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                          .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                          .addComponent(NombreTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(NumbersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                              .addComponent(IniciarJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(BorrarJugada, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(RehacerJugada, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(Top11, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                          .addComponent(TerminarJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                          .addComponent(TerminarJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                              .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(GuardarJuego)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(CargarJuego)))
-                        .addContainerGap())
-            );
+            getContentPane().add(CargarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 675, 150, -1));
 
             pack();
       }// </editor-fold>//GEN-END:initComponents
@@ -492,6 +454,10 @@ public class JugarFrame extends javax.swing.JFrame {
       private void Btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn5ActionPerformed
             // TODO add your handling code here:
       }//GEN-LAST:event_Btn5ActionPerformed
+
+      private void Btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn10ActionPerformed
+            // TODO add your handling code here:
+      }//GEN-LAST:event_Btn10ActionPerformed
 
       /**
        * @param args the command line arguments
@@ -566,6 +532,26 @@ public class JugarFrame extends javax.swing.JFrame {
       private javax.swing.JLabel NivelTXT;
       private javax.swing.JLabel NombreTXT;
       private javax.swing.JPanel NumbersPanel;
+      private javax.swing.JLabel Op001;
+      private javax.swing.JLabel Op012;
+      private javax.swing.JLabel Op023;
+      private javax.swing.JLabel Op034;
+      private javax.swing.JLabel Op101;
+      private javax.swing.JLabel Op112;
+      private javax.swing.JLabel Op123;
+      private javax.swing.JLabel Op134;
+      private javax.swing.JLabel Op201;
+      private javax.swing.JLabel Op212;
+      private javax.swing.JLabel Op223;
+      private javax.swing.JLabel Op234;
+      private javax.swing.JLabel Op301;
+      private javax.swing.JLabel Op312;
+      private javax.swing.JLabel Op323;
+      private javax.swing.JLabel Op334;
+      private javax.swing.JLabel Op412;
+      private javax.swing.JLabel Op423;
+      private javax.swing.JLabel Op434;
+      private javax.swing.JLabel Op501;
       private javax.swing.JButton RehacerJugada;
       private javax.swing.JButton TerminarJuego;
       private javax.swing.JButton TerminarJuego1;
@@ -574,5 +560,10 @@ public class JugarFrame extends javax.swing.JFrame {
       private javax.swing.JLabel jLabel2;
       private javax.swing.JLabel jLabel3;
       private javax.swing.JPanel jPanel1;
+      private javax.swing.JPanel jPanel3;
+      private javax.swing.JPanel jPanel4;
+      private javax.swing.JPanel jPanel5;
+      private javax.swing.JPanel jPanel6;
+      private javax.swing.JPanel panelgrid;
       // End of variables declaration//GEN-END:variables
 }
