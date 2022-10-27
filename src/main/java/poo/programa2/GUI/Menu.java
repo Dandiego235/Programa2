@@ -15,6 +15,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -144,6 +145,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void ConfigurarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfigurarButtonActionPerformed
         // TODO add your handling code here:
+        dispose();
+        ConfiguracionGUI config = new ConfiguracionGUI();
+        config.setVisible(true);
     }//GEN-LAST:event_ConfigurarButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
