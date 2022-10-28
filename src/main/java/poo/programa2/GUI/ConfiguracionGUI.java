@@ -37,14 +37,26 @@ public class ConfiguracionGUI extends javax.swing.JFrame {
         lados.put(true, derechaButton);
         System.out.println(Configuracion.getNivel());
         niveles.get(Configuracion.getNivel()).setSelected(true); // obtenemos el objeto del boton respectivo al nivel y lo activamos.
-        //relojes.get(Configuracion.getReloj()).setSelected(true); // obtenemos el objeto del boton respectivo al reloj y lo activamos.
-        //lados.get(Configuracion.getLado()).setSelected(true); // obtenemos el objeto del boton respectivo al lado y lo activamos.
+        relojes.get(Configuracion.getReloj()).setSelected(true); // obtenemos el objeto del boton respectivo al reloj y lo activamos.
+        lados.get(Configuracion.getLado()).setSelected(true); // obtenemos el objeto del boton respectivo al lado y lo activamos.
         if (Configuracion.getReloj().equals("No")){
             relojFrame.setVisible(false);
+        } else if (Configuracion.getReloj().equals("Sí")){
+            relojFrame.setVisible(true);
+            horasField.setEditable(false);
+            minutosField.setEditable(false);
+            segundosField.setEditable(false);
+            horasField.setText("0");
+            minutosField.setText("0");
+            segundosField.setText("0");
+        } else {
+            horasField.setEditable(true);
+            minutosField.setEditable(true);
+            segundosField.setEditable(true);
+            horasField.setText(Reloj.getHoras());
+            minutosField.setText(Reloj.getMinutos());
+            segundosField.setText(Reloj.getSegundos());
         }
-        horasField.setText(Reloj.getHoras());
-        minutosField.setText(Reloj.getMinutos());
-        segundosField.setText(Reloj.getSegundos());
         nivel = Configuracion.getNivel();
         reloj = Configuracion.getReloj();
         lado = Configuracion.getLado();
@@ -274,12 +286,21 @@ public class ConfiguracionGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         reloj = "Sí";
         relojFrame.setVisible(true);
+        horasField.setEditable(false);
+        minutosField.setEditable(false);
+        segundosField.setEditable(false);
+        horasField.setText("0");
+        minutosField.setText("0");
+        segundosField.setText("0");
     }//GEN-LAST:event_siButtonActionPerformed
 
     private void timerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerButtonActionPerformed
         // TODO add your handling code here:
         reloj = "Timer";
         relojFrame.setVisible(true);
+        horasField.setEditable(true);
+        minutosField.setEditable(true);
+        segundosField.setEditable(true);
     }//GEN-LAST:event_timerButtonActionPerformed
 
     private void noButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noButtonActionPerformed
@@ -308,50 +329,52 @@ public class ConfiguracionGUI extends javax.swing.JFrame {
             String horas = horasField.getText();
             String minutos = minutosField.getText();
             String segundos = segundosField.getText();
-            // validación de las horas, minutos y segundos
-            try{
-                Reloj.validarEntrada(horas, 0, 2);
-            } catch (NumberFormatException e){
-                JOptionPane.showMessageDialog(this, "Las horas deben ser un número.", 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } catch (RangeException e){
-                JOptionPane.showMessageDialog(this, "Las horas deben ser del 0 al 2.", 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            try{
-                Reloj.validarEntrada(minutos, 0, 59);
-            } catch (NumberFormatException e){
-                JOptionPane.showMessageDialog(this, "Los minutos deben ser un número.", 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } catch (RangeException e){
-                JOptionPane.showMessageDialog(this, "Los minutos deben ser del 0 al 59.", 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            try{
-                Reloj.validarEntrada(segundos, 0, 59);
-            } catch (NumberFormatException e){
-                JOptionPane.showMessageDialog(this, "Los segundos deben ser un número.", 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } catch (RangeException e){
-                JOptionPane.showMessageDialog(this, "Los segundos deben ser del 0 al 59.", 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+                if (timerButton.isSelected()){
+                // validación de las horas, minutos y segundos
+                try{
+                    Reloj.validarEntrada(horas, 0, 2);
+                } catch (NumberFormatException e){
+                    JOptionPane.showMessageDialog(this, "Las horas deben ser un número.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                } catch (RangeException e){
+                    JOptionPane.showMessageDialog(this, "Las horas deben ser del 0 al 2.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try{
+                    Reloj.validarEntrada(minutos, 0, 59);
+                } catch (NumberFormatException e){
+                    JOptionPane.showMessageDialog(this, "Los minutos deben ser un número.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                } catch (RangeException e){
+                    JOptionPane.showMessageDialog(this, "Los minutos deben ser del 0 al 59.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try{
+                    Reloj.validarEntrada(segundos, 0, 59);
+                } catch (NumberFormatException e){
+                    JOptionPane.showMessageDialog(this, "Los segundos deben ser un número.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                } catch (RangeException e){
+                    JOptionPane.showMessageDialog(this, "Los segundos deben ser del 0 al 59.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-            // si los tres son 0, enviamos un error
-            if (horas.equals("0") && minutos.equals("0") && segundos.equals("0")){
-                JOptionPane.showMessageDialog(this, "Al menos un valor no debe ser 0.", 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+                // si los tres son 0, enviamos un error
+                if (horas.equals("0") && minutos.equals("0") && segundos.equals("0")){
+                    JOptionPane.showMessageDialog(this, "Al menos un valor no debe ser 0.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
             Reloj.setHoras(horas);
             Reloj.setMinutos(minutos);
-            Reloj.setSegundos(segundos); 
+            Reloj.setSegundos(segundos);   
         }
         
         Configuracion.setNivel(nivel);
