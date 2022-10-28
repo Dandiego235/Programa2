@@ -28,6 +28,15 @@ public class Top10Frame extends javax.swing.JFrame {
 
             jLabel1 = new javax.swing.JLabel();
             jLabel2 = new javax.swing.JLabel();
+            jLabel3 = new javax.swing.JLabel();
+            jLabel4 = new javax.swing.JLabel();
+            jScrollPane1 = new javax.swing.JScrollPane();
+            FacilList = new javax.swing.JList<>();
+            jScrollPane2 = new javax.swing.JScrollPane();
+            IntermedioList = new javax.swing.JList<>();
+            jScrollPane3 = new javax.swing.JScrollPane();
+            DificilList = new javax.swing.JList<>();
+            CerrarButton = new javax.swing.JButton();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -37,10 +46,38 @@ public class Top10Frame extends javax.swing.JFrame {
             jLabel1.setForeground(new java.awt.Color(0, 0, 0));
             jLabel1.setText("Top 10");
             jLabel1.setOpaque(true);
-            getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 0, -1, -1));
+            getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, -1, -1));
 
-            jLabel2.setText("NIVEL FÁCIL");
-            getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+            jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jLabel2.setText("NIVEL FÁCIL:");
+            getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+            jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jLabel3.setText("NIVEL INTERMEDIO:");
+            getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+
+            jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jLabel4.setText("NIVEL DIFÍCIL:");
+            getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
+
+            FacilList.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane1.setViewportView(FacilList);
+
+            getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 290, 170));
+
+            IntermedioList.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane2.setViewportView(IntermedioList);
+
+            getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 290, 150));
+
+            DificilList.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane3.setViewportView(DificilList);
+
+            getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 290, 160));
+
+            CerrarButton.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            CerrarButton.setText("Cerrar");
+            getContentPane().add(CerrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 100, 50));
 
             pack();
       }// </editor-fold>//GEN-END:initComponents
@@ -81,7 +118,16 @@ public class Top10Frame extends javax.swing.JFrame {
       }
 
       // Variables declaration - do not modify//GEN-BEGIN:variables
+      private javax.swing.JButton CerrarButton;
+      private javax.swing.JList<String> DificilList;
+      private javax.swing.JList<String> FacilList;
+      private javax.swing.JList<String> IntermedioList;
       private javax.swing.JLabel jLabel1;
       private javax.swing.JLabel jLabel2;
+      private javax.swing.JLabel jLabel3;
+      private javax.swing.JLabel jLabel4;
+      private javax.swing.JScrollPane jScrollPane1;
+      private javax.swing.JScrollPane jScrollPane2;
+      private javax.swing.JScrollPane jScrollPane3;
       // End of variables declaration//GEN-END:variables
 }
