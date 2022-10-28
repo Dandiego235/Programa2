@@ -13,6 +13,7 @@ import poo.programa2.GUI.Menu;
 public class Programa2 {
 
     public static void main(String[] args) {
+        Partida.leerPartidas();
         new Menu().setVisible(true);
     }
 }
