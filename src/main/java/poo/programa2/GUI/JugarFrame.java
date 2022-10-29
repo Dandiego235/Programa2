@@ -19,11 +19,13 @@ public class JugarFrame extends javax.swing.JFrame {
       private final char or = '∨';
       private boolean started = false;
       private Juego juego;
+      private Partida partida;
       /**
        * Creates new form JugarFrame
        */
       public JugarFrame() {
             initComponents();
+            this.setLocationRelativeTo(null);
       }
 
       /**
@@ -97,6 +99,7 @@ public class JugarFrame extends javax.swing.JFrame {
             Btn1 = new javax.swing.JToggleButton();
             Btn5 = new javax.swing.JToggleButton();
             Btn4 = new javax.swing.JToggleButton();
+            Btn6 = new javax.swing.JToggleButton();
             IniciarJuego = new javax.swing.JButton();
             BorrarJugada = new javax.swing.JButton();
             RehacerJugada = new javax.swing.JButton();
@@ -151,7 +154,7 @@ public class JugarFrame extends javax.swing.JFrame {
                         Btn10ActionPerformed(evt);
                   }
             });
-            jPanel1.add(Btn10, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 119, 50, 47));
+            jPanel1.add(Btn10, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 116, 50, 50));
 
             Btn11.setBackground(new java.awt.Color(255, 255, 255));
             Btn11.addActionListener(new java.awt.event.ActionListener() {
@@ -438,14 +441,14 @@ public class JugarFrame extends javax.swing.JFrame {
             Btn2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             Btn2.setForeground(new java.awt.Color(0, 0, 0));
             Btn2.setText("2");
-            NumbersPanel.add(Btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 50, 50));
+            NumbersPanel.add(Btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 50, 50));
 
             Btn3.setBackground(new java.awt.Color(255, 255, 255));
             Opciones.add(Btn3);
             Btn3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             Btn3.setForeground(new java.awt.Color(0, 0, 0));
             Btn3.setText("3");
-            NumbersPanel.add(Btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 50, 50));
+            NumbersPanel.add(Btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 50, 50));
 
             Btn1.setBackground(new java.awt.Color(255, 255, 255));
             Opciones.add(Btn1);
@@ -457,23 +460,35 @@ public class JugarFrame extends javax.swing.JFrame {
                         Btn1ActionPerformed(evt);
                   }
             });
-            NumbersPanel.add(Btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 50, 50));
+            NumbersPanel.add(Btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 50, 50));
 
             Btn5.setBackground(new java.awt.Color(255, 255, 255));
             Opciones.add(Btn5);
             Btn5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             Btn5.setForeground(new java.awt.Color(0, 0, 0));
             Btn5.setText("5");
-            NumbersPanel.add(Btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 50, 50));
+            NumbersPanel.add(Btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 50, 50));
 
             Btn4.setBackground(new java.awt.Color(255, 255, 255));
             Opciones.add(Btn4);
             Btn4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             Btn4.setForeground(new java.awt.Color(0, 0, 0));
             Btn4.setText("4");
-            NumbersPanel.add(Btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 50, 50));
+            Btn4.addActionListener(new java.awt.event.ActionListener() {
+                  public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        Btn4ActionPerformed(evt);
+                  }
+            });
+            NumbersPanel.add(Btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 50, 50));
 
-            getContentPane().add(NumbersPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 140, -1, 420));
+            Btn6.setBackground(new java.awt.Color(255, 255, 255));
+            Opciones.add(Btn6);
+            Btn6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+            Btn6.setForeground(new java.awt.Color(0, 0, 0));
+            Btn6.setText("Borrar");
+            NumbersPanel.add(Btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 90, 50));
+
+            getContentPane().add(NumbersPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, -1, 470));
 
             IniciarJuego.setBackground(new java.awt.Color(204, 0, 0));
             IniciarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
@@ -543,16 +558,25 @@ public class JugarFrame extends javax.swing.JFrame {
 
       private void Btn01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn01ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 0,1, this);
       }//GEN-LAST:event_Btn01ActionPerformed
 
       private void Btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn10ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 1,0, this);
       }//GEN-LAST:event_Btn10ActionPerformed
 
       private void Btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn00ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 0,0, this);
       }//GEN-LAST:event_Btn00ActionPerformed
 
@@ -574,7 +598,7 @@ public class JugarFrame extends javax.swing.JFrame {
             if (!started) {
                   started = true;
                   // random partida
-                  
+                  partida = Partida.getFaciles().get(0);
                   juego = new Juego(partida, NombreTXT.getText(), Btn00, Btn01, Btn02, Btn03, Btn04, Btn10, Btn11, Btn12, Btn13, Btn14, Btn20, Btn21, Btn22, Btn23, Btn24, Btn30, Btn31, Btn32, Btn33, Btn34, Btn40, Btn41, Btn42, Btn43, Btn44);
                   
                   // si hay timer
@@ -592,111 +616,177 @@ public class JugarFrame extends javax.swing.JFrame {
 
       private void Btn02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn02ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 0,2, this);
       }//GEN-LAST:event_Btn02ActionPerformed
 
       private void Btn03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn03ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 0,3, this);
       }//GEN-LAST:event_Btn03ActionPerformed
 
       private void Btn04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn04ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 0,4, this);
       }//GEN-LAST:event_Btn04ActionPerformed
 
       private void Btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn11ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 1,1, this);
       }//GEN-LAST:event_Btn11ActionPerformed
 
       private void Btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn12ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 1,2, this);
       }//GEN-LAST:event_Btn12ActionPerformed
 
       private void Btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn13ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 1,3, this);
       }//GEN-LAST:event_Btn13ActionPerformed
 
       private void Btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn14ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 1,4, this);
       }//GEN-LAST:event_Btn14ActionPerformed
 
       private void Btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn20ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 2,0, this);
       }//GEN-LAST:event_Btn20ActionPerformed
 
       private void Btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn21ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 2,1, this);
       }//GEN-LAST:event_Btn21ActionPerformed
 
       private void Btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn22ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 2,2, this);
       }//GEN-LAST:event_Btn22ActionPerformed
 
       private void Btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn23ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 2,3, this);
       }//GEN-LAST:event_Btn23ActionPerformed
 
       private void Btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn24ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 2,4, this);
       }//GEN-LAST:event_Btn24ActionPerformed
 
       private void Btn30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn30ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 3,0, this);
       }//GEN-LAST:event_Btn30ActionPerformed
 
       private void Btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn31ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 3,1, this);
       }//GEN-LAST:event_Btn31ActionPerformed
 
       private void Btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn32ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 3,2, this);
       }//GEN-LAST:event_Btn32ActionPerformed
 
       private void Btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn33ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 3,3, this);
       }//GEN-LAST:event_Btn33ActionPerformed
 
       private void Btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn34ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 3,4, this);
       }//GEN-LAST:event_Btn34ActionPerformed
 
       private void Btn40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn40ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 4,0, this);
       }//GEN-LAST:event_Btn40ActionPerformed
 
       private void Btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn41ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 4,1, this);
       }//GEN-LAST:event_Btn41ActionPerformed
 
       private void Btn42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn42ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 4,2, this);
       }//GEN-LAST:event_Btn42ActionPerformed
 
       private void Btn43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn43ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 4,3, this);
       }//GEN-LAST:event_Btn43ActionPerformed
 
       private void Btn44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn44ActionPerformed
             // TODO add your handling code here:
+            if (!started) {
+                  return;             
+            }
             juego.añadirNumero(getSelectedButtonText(), 4,4, this);
       }//GEN-LAST:event_Btn44ActionPerformed
 
@@ -709,6 +799,10 @@ public class JugarFrame extends javax.swing.JFrame {
             // TODO add your handling code here:
             juego.rehacerJugada(this);
       }//GEN-LAST:event_RehacerJugadaActionPerformed
+
+      private void Btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn4ActionPerformed
+            // TODO add your handling code here:
+      }//GEN-LAST:event_Btn4ActionPerformed
 
       /**
        * @param args the command line arguments
@@ -777,6 +871,7 @@ public class JugarFrame extends javax.swing.JFrame {
       private javax.swing.JButton Btn43;
       private javax.swing.JButton Btn44;
       private javax.swing.JToggleButton Btn5;
+      private javax.swing.JToggleButton Btn6;
       private javax.swing.JButton CargarJuego;
       private javax.swing.JButton GuardarJuego;
       private javax.swing.JButton IniciarJuego;

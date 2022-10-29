@@ -12,7 +12,7 @@ package poo.programa2;
 public class Operacion {
     private int indiceFila;
     private int indiceColumna;
-    private char tipo;
+    private char tipo; // no es necesariamente el tipo de desigualdad, puede ser la constante
 
     /**
      * Constructor

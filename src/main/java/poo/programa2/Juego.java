@@ -18,7 +18,7 @@ public class Juego {
       private Stack<Jugada> jugadas;
       private Stack<Jugada> redoJugadas;
       private Marca marca;
-      public Juego(Partida partida, String nombre, javax.swing.JButton button00, javax.swing.JButton button01, javax.swing.JButton button02, javax.swing.JButton button03, javax.swing.JButton button04,javax.swing.JButton button10, javax.swing.JButton button11, javax.swing.JButton button12, javax.swing.JButton button13, javax.swing.JButton button14,javax.swing.JButton button20, javax.swing.JButton button21, javax.swing.JButton button22, javax.swing.JButton button23, javax.swing.JButton button24,javax.swing.JButton button30, javax.swing.JButton button31, javax.swing.JButton button32, javax.swing.JButton button33, javax.swing.JButton button34,javax.swing.JButton button40, javax.swing.JButton button41, javax.swing.JButton button42, javax.swing.JButton button43, javax.swing.JButton button44){
+      public Juego(Partida pPartida, String nombre, javax.swing.JButton button00, javax.swing.JButton button01, javax.swing.JButton button02, javax.swing.JButton button03, javax.swing.JButton button04,javax.swing.JButton button10, javax.swing.JButton button11, javax.swing.JButton button12, javax.swing.JButton button13, javax.swing.JButton button14,javax.swing.JButton button20, javax.swing.JButton button21, javax.swing.JButton button22, javax.swing.JButton button23, javax.swing.JButton button24,javax.swing.JButton button30, javax.swing.JButton button31, javax.swing.JButton button32, javax.swing.JButton button33, javax.swing.JButton button34,javax.swing.JButton button40, javax.swing.JButton button41, javax.swing.JButton button42, javax.swing.JButton button43, javax.swing.JButton button44){
             casillas = new javax.swing.JButton[5][5];
             casillas[0][0] = button00;
             casillas[0][1] = button01;
@@ -47,6 +47,7 @@ public class Juego {
             casillas[4][4] = button44;            
             jugadas = new Stack<>();
             marca = new Marca(nombre);
+            partida = pPartida;
       }
       
       public void añadirNumero(String numero, int fila, int columna,Component window){ // recibe las coordenadas de la casilla a donde se va a poner el número
@@ -67,8 +68,82 @@ public class Juego {
                         return;
                   }
             }
+            int i = 0;
+            for (Operacion constante : partida.getConstantes()){
+                  if (constante.getIndiceFila() == fila && constante.getIndiceColumna() == columna){
+                        JOptionPane.showMessageDialog(window, "JUGADA NO ES VÁLIDA PORQUE ESTE ES UN DÍGITO FIJO.", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                        casillas[i][columna].setBackground(Color.red);
+                        return;
+                  }
+            }
             
-            // TO DO: REVISAR SI ES FIJO Y LA RESTRICCION DE MAYOR O MENOR
+            OUTER:
+            for (; i < partida.getOperaciones().size(); i ++) {
+                  if (partida.getOperaciones().get(i).getIndiceColumna() == columna && partida.getOperaciones().get(i).getIndiceFila() == fila) {
+                        switch (partida.getOperaciones().get(i).getTipo()) {
+                              case 'a':
+                                    try {
+                                          if (Integer.valueOf(casillas[fila][columna].getText()) < Integer.valueOf(casillas[fila][columna+1].getText())) {
+                                                break OUTER;
+                                          } else {
+                                                JOptionPane.showMessageDialog(window, "JUGADA NO ES VÁLIDA PORQUE NO CUMPLE CON LA RESTRICCIÓN DE MENOR.", 
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                                                casillas[i][columna].setBackground(Color.red);
+                                                return;
+                                          }
+                                    }
+                                    catch (Exception e){
+                                          break;
+                                    }
+                              case 'b':
+                                    try {
+                                          if (Integer.valueOf(casillas[fila][columna].getText()) > Integer.valueOf(casillas[fila][columna+1].getText())) {
+                                                break OUTER;
+                                          } else {
+                                                JOptionPane.showMessageDialog(window, "JUGADA NO ES VÁLIDA PORQUE NO CUMPLE CON LA RESTRICCIÓN DE MAYOR.", 
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                                                casillas[i][columna].setBackground(Color.red);
+                                                return;
+                                          }
+                                    }
+                                    catch (Exception e){
+                                          break;
+                                    }
+                              case 'y':
+                                    try {
+                                          if (Integer.valueOf(casillas[fila][columna].getText()) > Integer.valueOf(casillas[fila+1][columna].getText())) {
+                                                break OUTER;
+                                          } else {
+                                                JOptionPane.showMessageDialog(window, "JUGADA NO ES VÁLIDA PORQUE NO CUMPLE CON LA RESTRICCIÓN DE MAYOR.", 
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                                                casillas[i][columna].setBackground(Color.red);
+                                                return;
+                                          }
+                                    }
+                                    catch (Exception e){
+                                          break;
+                                    }
+                              case 'z':
+                                    try {
+                                          if (Integer.valueOf(casillas[fila][columna].getText()) < Integer.valueOf(casillas[fila+1][columna].getText())) {
+                                                break OUTER;
+                                          } else {
+                                                JOptionPane.showMessageDialog(window, "JUGADA NO ES VÁLIDA PORQUE NO CUMPLE CON LA RESTRICCIÓN DE MENOR.", 
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                                                casillas[i][columna].setBackground(Color.red);
+                                                return;
+                                          }
+                                    }
+                                    catch (Exception e){
+                                          break;
+                                    }
+                              default:
+                                    break;
+                        }
+                        
+                  }
+            }
             
             jugadas.push(new Jugada(fila,columna,numero)); // mete la jugada a la pila de jugadas para luego hacer el undo si se requiere
             if (!numero.equals("Borrar")){  // se altera el texto de la casilla
@@ -77,7 +152,7 @@ public class Juego {
                    
                   casillas[fila][columna].setText("");      
             }
-            casillas[fila][columna].setBackground(Color.red);
+            casillas[fila][columna].setBackground(Color.white);
             redoJugadas = new Stack<>();            // Se crea la pila para poner las jugadas por rehacer.
       }
       
@@ -136,6 +211,28 @@ public class Juego {
             }
             
             // REVISAR LAS OPERACIONES
+            for (Operacion operacion : partida.getOperaciones()) {
+                  switch (operacion.getTipo()) {
+                        case 'a':
+                              if (!(Integer.valueOf(casillas[operacion.getIndiceFila()][operacion.getIndiceColumna()].getText()) < Integer.valueOf(casillas[operacion.getIndiceFila()][operacion.getIndiceColumna()+1].getText()))) {
+                                    return false;
+                              }
+                        case 'b':
+                              if (!(Integer.valueOf(casillas[operacion.getIndiceFila()][operacion.getIndiceColumna()].getText()) > Integer.valueOf(casillas[operacion.getIndiceFila()][operacion.getIndiceColumna()+1].getText()))) {
+                                    return false;
+                              }
+                        case 'y':
+                              if (!(Integer.valueOf(casillas[operacion.getIndiceFila()][operacion.getIndiceColumna()].getText()) > Integer.valueOf(casillas[operacion.getIndiceFila()+1][operacion.getIndiceColumna()].getText()))) {
+                                    return false;
+                              }
+                        case 'z':
+                              if (!(Integer.valueOf(casillas[operacion.getIndiceFila()][operacion.getIndiceColumna()].getText()) < Integer.valueOf(casillas[operacion.getIndiceFila()+1][operacion.getIndiceColumna()].getText()))) {
+                                    return false;
+                              }
+                        default:
+                              break;
+                  }
+            }
             return true;
       }
       
