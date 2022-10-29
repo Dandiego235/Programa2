@@ -5,9 +5,11 @@
 package poo.programa2.GUI;
 
 import java.awt.Component;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import poo.programa2.*;
 
 /**
@@ -15,546 +17,750 @@ import poo.programa2.*;
  * @author dandi
  */
 public class JugarFrame extends javax.swing.JFrame {
-      private final char and = '∧';
-      private final char or = '∨';
-      private boolean started = false;
-      private Juego juego;
-      private Partida partida;
+    private final char and = '∧';
+    private final char or = '∨';
+    private boolean started = false;
+    private Juego juego;
+    private Partida partida;
+    private ArrayList<javax.swing.JLabel> labelsHorizontales = new ArrayList<>();
+    private ArrayList<javax.swing.JLabel> labelsVerticales = new ArrayList<>();
+    private javax.swing.JButton [][] casillas;
+      
+    private void establecerPartida(){
+        int index = Partida.getIndex(Configuracion.getNivel());
+        partida = Partida.getPartidasPorNivel().get(Configuracion.getNivel()).get(index);
+        for (javax.swing.JLabel label : labelsHorizontales){
+          label.setText("");
+        }
+        for (javax.swing.JLabel label : labelsVerticales){
+          label.setText("");
+        }
+        for(Operacion desigualdad : partida.getOperaciones()){
+            switch(desigualdad.getTipo()){
+                case 'a':
+                    labelsHorizontales.get(4 * desigualdad.getIndiceFila() + desigualdad.getIndiceColumna()).setText(">");
+                    break;
+                case 'b':
+                    labelsHorizontales.get(4 * desigualdad.getIndiceFila() + desigualdad.getIndiceColumna()).setText("<");
+                    break;
+                case 'y':
+                    labelsVerticales.get(5*desigualdad.getIndiceFila() + desigualdad.getIndiceColumna()).setText("∨");
+                    break;
+                case 'z':
+                    labelsVerticales.get(5*desigualdad.getIndiceFila() + desigualdad.getIndiceColumna()).setText("∧");  
+            }
+        }
+        for (javax.swing.JButton[] fila : casillas){
+            for (javax.swing.JButton button : fila){
+                button.setText("");
+            }
+        }
+        for(Operacion constante : partida.getConstantes()){
+            casillas[constante.getIndiceFila()][constante.getIndiceColumna()].setText(Character.toString(constante.getTipo()));
+        }
+    }
+      
       /**
        * Creates new form JugarFrame
        */
       public JugarFrame() {
             initComponents();
             this.setLocationRelativeTo(null);
-      }
+            NivelTXT.setText(Configuracion.getNivel());
+            labelsHorizontales.add(Op001);
+            labelsHorizontales.add(Op012);
+            labelsHorizontales.add(Op023);
+            labelsHorizontales.add(Op034);
+            labelsHorizontales.add(Op101);
+            labelsHorizontales.add(Op112);
+            labelsHorizontales.add(Op123);
+            labelsHorizontales.add(Op134);
+            labelsHorizontales.add(Op201);
+            labelsHorizontales.add(Op212);
+            labelsHorizontales.add(Op223);
+            labelsHorizontales.add(Op234);
+            labelsHorizontales.add(Op301);
+            labelsHorizontales.add(Op312);
+            labelsHorizontales.add(Op323);
+            labelsHorizontales.add(Op334);
+            labelsHorizontales.add(Op401);
+            labelsHorizontales.add(Op412);
+            labelsHorizontales.add(Op423);
+            labelsHorizontales.add(Op434);
+            
+            labelsVerticales.add(Op00V);
+            labelsVerticales.add(Op01V);
+            labelsVerticales.add(Op02V);
+            labelsVerticales.add(Op03V);
+            labelsVerticales.add(Op04V);
+            labelsVerticales.add(Op10V);
+            labelsVerticales.add(Op11V);
+            labelsVerticales.add(Op12V);
+            labelsVerticales.add(Op13V);
+            labelsVerticales.add(Op14V);
+            labelsVerticales.add(Op20V);
+            labelsVerticales.add(Op21V);
+            labelsVerticales.add(Op22V);
+            labelsVerticales.add(Op23V);
+            labelsVerticales.add(Op24V);
+            labelsVerticales.add(Op30V);
+            labelsVerticales.add(Op31V);
+            labelsVerticales.add(Op32V);
+            labelsVerticales.add(Op33V);
+            labelsVerticales.add(Op34V);
 
+            casillas = new javax.swing.JButton[5][5];
+            casillas[0][0] = Btn00;
+            casillas[0][1] = Btn01;
+            casillas[0][2] = Btn02;
+            casillas[0][3] = Btn03;
+            casillas[0][4] = Btn04;
+            casillas[1][0] = Btn00;
+            casillas[1][1] = Btn11;
+            casillas[1][2] = Btn12;
+            casillas[1][3] = Btn13;
+            casillas[1][4] = Btn14;
+            casillas[2][0] = Btn20;
+            casillas[2][1] = Btn21;
+            casillas[2][2] = Btn22;
+            casillas[2][3] = Btn23;
+            casillas[2][4] = Btn24;
+            casillas[3][0] = Btn30;
+            casillas[3][1] = Btn31;
+            casillas[3][2] = Btn32;
+            casillas[3][3] = Btn33;
+            casillas[3][4] = Btn34;
+            casillas[4][0] = Btn40;
+            casillas[4][1] = Btn41;
+            casillas[4][2] = Btn42;
+            casillas[4][3] = Btn43;
+            casillas[4][4] = Btn44;
+            establecerPartida();
+        }
       /**
        * This method is called from within the constructor to initialize the
        * form. WARNING: Do NOT modify this code. The content of this method is
        * always regenerated by the Form Editor.
        */
       @SuppressWarnings("unchecked")
-      // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-      private void initComponents() {
-
-            Opciones = new javax.swing.ButtonGroup();
-            jLabel2 = new javax.swing.JLabel();
-            jLabel1 = new javax.swing.JLabel();
-            jLabel3 = new javax.swing.JLabel();
-            NivelTXT = new javax.swing.JLabel();
-            jPanel1 = new javax.swing.JPanel();
-            Btn03 = new javax.swing.JButton();
-            Btn04 = new javax.swing.JButton();
-            Btn10 = new javax.swing.JButton();
-            Btn11 = new javax.swing.JButton();
-            Btn12 = new javax.swing.JButton();
-            Btn13 = new javax.swing.JButton();
-            Btn14 = new javax.swing.JButton();
-            Btn00 = new javax.swing.JButton();
-            Btn01 = new javax.swing.JButton();
-            Btn02 = new javax.swing.JButton();
-            Btn20 = new javax.swing.JButton();
-            Btn21 = new javax.swing.JButton();
-            Btn22 = new javax.swing.JButton();
-            Btn23 = new javax.swing.JButton();
-            Btn24 = new javax.swing.JButton();
-            Btn44 = new javax.swing.JButton();
-            Btn30 = new javax.swing.JButton();
-            Btn31 = new javax.swing.JButton();
-            Btn32 = new javax.swing.JButton();
-            Btn33 = new javax.swing.JButton();
-            Btn34 = new javax.swing.JButton();
-            Btn40 = new javax.swing.JButton();
-            Btn41 = new javax.swing.JButton();
-            Btn42 = new javax.swing.JButton();
-            Btn43 = new javax.swing.JButton();
-            panelgrid = new javax.swing.JPanel();
-            Op001 = new javax.swing.JLabel();
-            Op101 = new javax.swing.JLabel();
-            Op201 = new javax.swing.JLabel();
-            Op301 = new javax.swing.JLabel();
-            Op501 = new javax.swing.JLabel();
-            jPanel3 = new javax.swing.JPanel();
-            Op012 = new javax.swing.JLabel();
-            Op112 = new javax.swing.JLabel();
-            Op212 = new javax.swing.JLabel();
-            Op312 = new javax.swing.JLabel();
-            Op412 = new javax.swing.JLabel();
-            jPanel4 = new javax.swing.JPanel();
-            Op023 = new javax.swing.JLabel();
-            Op123 = new javax.swing.JLabel();
-            Op223 = new javax.swing.JLabel();
-            Op323 = new javax.swing.JLabel();
-            Op423 = new javax.swing.JLabel();
-            jPanel6 = new javax.swing.JPanel();
-            Op034 = new javax.swing.JLabel();
-            Op134 = new javax.swing.JLabel();
-            Op234 = new javax.swing.JLabel();
-            Op334 = new javax.swing.JLabel();
-            Op434 = new javax.swing.JLabel();
-            NombreTXT = new javax.swing.JLabel();
-            NumbersPanel = new javax.swing.JPanel();
-            Btn2 = new javax.swing.JToggleButton();
-            Btn3 = new javax.swing.JToggleButton();
-            Btn1 = new javax.swing.JToggleButton();
-            Btn5 = new javax.swing.JToggleButton();
-            Btn4 = new javax.swing.JToggleButton();
-            Btn6 = new javax.swing.JToggleButton();
-            IniciarJuego = new javax.swing.JButton();
-            BorrarJugada = new javax.swing.JButton();
-            RehacerJugada = new javax.swing.JButton();
-            TerminarJuego = new javax.swing.JButton();
-            Top10 = new javax.swing.JButton();
-            TerminarJuego1 = new javax.swing.JButton();
-            GuardarJuego = new javax.swing.JButton();
-            CargarJuego = new javax.swing.JButton();
-
-            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-            setBackground(new java.awt.Color(255, 255, 255));
-            getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            jLabel2.setBackground(new java.awt.Color(153, 0, 0));
-            jLabel2.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
-            jLabel2.setText("Futoshiki");
-            jLabel2.setOpaque(true);
-            getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 110, -1));
-
-            jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            jLabel1.setText("NIVEL");
-            getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 51, -1, -1));
-
-            jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            jLabel3.setText("Nombre del jugador");
-            getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 101, -1, -1));
-
-            NivelTXT.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            getContentPane().add(NivelTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 380, 25));
-
-            jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            Btn03.setBackground(new java.awt.Color(255, 255, 255));
-            Btn03.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn03ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn03, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 27, 55, 47));
-
-            Btn04.setBackground(new java.awt.Color(255, 255, 255));
-            Btn04.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn04ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn04, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 27, 55, 47));
-
-            Btn10.setBackground(new java.awt.Color(255, 255, 255));
-            Btn10.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn10ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn10, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 116, 50, 50));
-
-            Btn11.setBackground(new java.awt.Color(255, 255, 255));
-            Btn11.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn11ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn11, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 119, 55, 47));
-
-            Btn12.setBackground(new java.awt.Color(255, 255, 255));
-            Btn12.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn12ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 55, 47));
-
-            Btn13.setBackground(new java.awt.Color(255, 255, 255));
-            Btn13.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn13ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn13, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 119, 55, 47));
-
-            Btn14.setBackground(new java.awt.Color(255, 255, 255));
-            Btn14.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn14ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn14, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 119, 55, 47));
-
-            Btn00.setBackground(new java.awt.Color(255, 255, 255));
-            Btn00.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn00ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn00, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 27, 55, 47));
-
-            Btn01.setBackground(new java.awt.Color(255, 255, 255));
-            Btn01.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn01ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn01, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 27, 55, 47));
-
-            Btn02.setBackground(new java.awt.Color(255, 255, 255));
-            Btn02.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn02ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn02, new org.netbeans.lib.awtextra.AbsoluteConstraints(227, 27, 55, 47));
-
-            Btn20.setBackground(new java.awt.Color(255, 255, 255));
-            Btn20.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn20ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn20, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 193, 55, 47));
-
-            Btn21.setBackground(new java.awt.Color(255, 255, 255));
-            Btn21.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn21ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn21, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 193, 55, 47));
-
-            Btn22.setBackground(new java.awt.Color(255, 255, 255));
-            Btn22.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn22ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn22, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 55, 47));
-
-            Btn23.setBackground(new java.awt.Color(255, 255, 255));
-            Btn23.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn23ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn23, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 50, 50));
-
-            Btn24.setBackground(new java.awt.Color(255, 255, 255));
-            Btn24.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn24ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn24, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 55, 47));
-
-            Btn44.setBackground(new java.awt.Color(255, 255, 255));
-            Btn44.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn44ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn44, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 352, 55, 50));
-
-            Btn30.setBackground(new java.awt.Color(255, 255, 255));
-            Btn30.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn30ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn30, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 276, 55, 47));
-
-            Btn31.setBackground(new java.awt.Color(255, 255, 255));
-            Btn31.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn31ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn31, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 276, 55, 47));
-
-            Btn32.setBackground(new java.awt.Color(255, 255, 255));
-            Btn32.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn32ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn32, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 277, 55, 50));
-
-            Btn33.setBackground(new java.awt.Color(255, 255, 255));
-            Btn33.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn33ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn33, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 50, 50));
-
-            Btn34.setBackground(new java.awt.Color(255, 255, 255));
-            Btn34.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn34ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn34, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 276, 55, 47));
-
-            Btn40.setBackground(new java.awt.Color(255, 255, 255));
-            Btn40.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn40ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn40, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 355, 55, 47));
-
-            Btn41.setBackground(new java.awt.Color(255, 255, 255));
-            Btn41.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn41ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn41, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 50, 50));
-
-            Btn42.setBackground(new java.awt.Color(255, 255, 255));
-            Btn42.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn42ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn42, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 55, 50));
-
-            Btn43.setBackground(new java.awt.Color(255, 255, 255));
-            Btn43.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn43ActionPerformed(evt);
-                  }
-            });
-            jPanel1.add(Btn43, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 55, 47));
-
-            panelgrid.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            Op001.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op001.setText("hhhhhh");
-            panelgrid.add(Op001, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 41, -1, -1));
-
-            Op101.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-            Op101.setText(">");
-            panelgrid.add(Op101, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 20, -1));
-
-            Op201.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op201.setText("∧");
-            panelgrid.add(Op201, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 206, -1, -1));
-
-            Op301.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op301.setText("∨");
-            panelgrid.add(Op301, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 293, -1, -1));
-
-            Op501.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op501.setText("jLabel4");
-            panelgrid.add(Op501, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 366, -1, -1));
-
-            jPanel1.add(panelgrid, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 0, -1, 402));
-
-            jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            Op012.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op012.setText("jLabel4");
-            jPanel3.add(Op012, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 30, -1, -1));
-
-            Op112.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op112.setText("jLabel4");
-            jPanel3.add(Op112, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 126, -1, -1));
-
-            Op212.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op212.setText("jLabel4");
-            jPanel3.add(Op212, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 194, -1, -1));
-
-            Op312.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op312.setText("jLabel4");
-            jPanel3.add(Op312, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 281, -1, -1));
-
-            Op412.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op412.setText("jLabel4");
-            jPanel3.add(Op412, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 357, -1, -1));
-
-            jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 50, 400));
-
-            jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            Op023.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op023.setText("jLabel4");
-            jPanel4.add(Op023, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 46, -1));
-
-            Op123.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op123.setText("jLabel4");
-            jPanel4.add(Op123, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 113, -1, -1));
-
-            Op223.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op223.setText("jLabel4");
-            jPanel4.add(Op223, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 183, -1, -1));
-
-            Op323.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op323.setText("jLabel4");
-            jPanel4.add(Op323, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 273, -1, -1));
-
-            Op423.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op423.setText("jLabel4");
-            jPanel4.add(Op423, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 346, -1, -1));
-
-            jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 40, 400));
-
-            jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            Op034.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op034.setText("jLabel4");
-            jPanel6.add(Op034, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 20, -1, -1));
-
-            Op134.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op134.setText("jLabel4");
-            jPanel6.add(Op134, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 112, -1, -1));
-
-            Op234.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op234.setText("jLabel4");
-            jPanel6.add(Op234, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 182, -1, -1));
-
-            Op334.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op334.setText("jLabel4");
-            jPanel6.add(Op334, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 271, -1, -1));
-
-            Op434.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Op434.setText("jLabel4");
-            jPanel6.add(Op434, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 348, -1, -1));
-
-            jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 50, 390));
-
-            getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 144, 486, 415));
-
-            NombreTXT.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            NombreTXT.setText("hola");
-            getContentPane().add(NombreTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 101, 570, -1));
-
-            NumbersPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            Btn2.setBackground(new java.awt.Color(255, 255, 255));
-            Opciones.add(Btn2);
-            Btn2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Btn2.setForeground(new java.awt.Color(0, 0, 0));
-            Btn2.setText("2");
-            NumbersPanel.add(Btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 50, 50));
-
-            Btn3.setBackground(new java.awt.Color(255, 255, 255));
-            Opciones.add(Btn3);
-            Btn3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Btn3.setForeground(new java.awt.Color(0, 0, 0));
-            Btn3.setText("3");
-            NumbersPanel.add(Btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 50, 50));
-
-            Btn1.setBackground(new java.awt.Color(255, 255, 255));
-            Opciones.add(Btn1);
-            Btn1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Btn1.setForeground(new java.awt.Color(0, 0, 0));
-            Btn1.setText("1");
-            Btn1.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn1ActionPerformed(evt);
-                  }
-            });
-            NumbersPanel.add(Btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 50, 50));
-
-            Btn5.setBackground(new java.awt.Color(255, 255, 255));
-            Opciones.add(Btn5);
-            Btn5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Btn5.setForeground(new java.awt.Color(0, 0, 0));
-            Btn5.setText("5");
-            NumbersPanel.add(Btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 50, 50));
-
-            Btn4.setBackground(new java.awt.Color(255, 255, 255));
-            Opciones.add(Btn4);
-            Btn4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Btn4.setForeground(new java.awt.Color(0, 0, 0));
-            Btn4.setText("4");
-            Btn4.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Btn4ActionPerformed(evt);
-                  }
-            });
-            NumbersPanel.add(Btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 50, 50));
-
-            Btn6.setBackground(new java.awt.Color(255, 255, 255));
-            Opciones.add(Btn6);
-            Btn6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Btn6.setForeground(new java.awt.Color(0, 0, 0));
-            Btn6.setText("Borrar");
-            NumbersPanel.add(Btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 90, 50));
-
-            getContentPane().add(NumbersPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, -1, 470));
-
-            IniciarJuego.setBackground(new java.awt.Color(204, 0, 0));
-            IniciarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            IniciarJuego.setForeground(new java.awt.Color(0, 0, 0));
-            IniciarJuego.setText("Iniciar Juego");
-            IniciarJuego.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        IniciarJuegoActionPerformed(evt);
-                  }
-            });
-            getContentPane().add(IniciarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 577, -1, 52));
-
-            BorrarJugada.setBackground(new java.awt.Color(0, 204, 255));
-            BorrarJugada.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            BorrarJugada.setForeground(new java.awt.Color(0, 0, 0));
-            BorrarJugada.setText("Borrar Jugada");
-            BorrarJugada.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        BorrarJugadaActionPerformed(evt);
-                  }
-            });
-            getContentPane().add(BorrarJugada, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 577, -1, 52));
-
-            RehacerJugada.setBackground(new java.awt.Color(255, 153, 0));
-            RehacerJugada.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            RehacerJugada.setForeground(new java.awt.Color(0, 0, 0));
-            RehacerJugada.setText("Rehacer Jugada");
-            RehacerJugada.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        RehacerJugadaActionPerformed(evt);
-                  }
-            });
-            getContentPane().add(RehacerJugada, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 577, -1, 52));
-
-            TerminarJuego.setBackground(new java.awt.Color(0, 153, 0));
-            TerminarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            TerminarJuego.setForeground(new java.awt.Color(0, 0, 0));
-            TerminarJuego.setText("Terminar Juego");
-            getContentPane().add(TerminarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 640, -1, 52));
-
-            Top10.setBackground(new java.awt.Color(255, 255, 0));
-            Top10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            Top10.setForeground(new java.awt.Color(0, 0, 0));
-            Top10.setText("Top 10");
-            getContentPane().add(Top10, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 577, -1, 52));
-
-            TerminarJuego1.setBackground(new java.awt.Color(153, 204, 255));
-            TerminarJuego1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            TerminarJuego1.setForeground(new java.awt.Color(0, 0, 0));
-            TerminarJuego1.setText("Borrar Juego");
-            getContentPane().add(TerminarJuego1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 640, -1, 52));
-
-            GuardarJuego.setBackground(new java.awt.Color(255, 255, 255));
-            GuardarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            GuardarJuego.setForeground(new java.awt.Color(0, 0, 0));
-            GuardarJuego.setText("Guardar Juego");
-            getContentPane().add(GuardarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 635, -1, -1));
-
-            CargarJuego.setBackground(new java.awt.Color(255, 255, 255));
-            CargarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            CargarJuego.setForeground(new java.awt.Color(0, 0, 0));
-            CargarJuego.setText("Cargar Juego");
-            getContentPane().add(CargarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 675, 150, -1));
-
-            pack();
-      }// </editor-fold>//GEN-END:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        Opciones = new javax.swing.ButtonGroup();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        NivelTXT = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        Btn03 = new javax.swing.JButton();
+        Btn04 = new javax.swing.JButton();
+        Btn10 = new javax.swing.JButton();
+        Btn11 = new javax.swing.JButton();
+        Btn12 = new javax.swing.JButton();
+        Btn13 = new javax.swing.JButton();
+        Btn14 = new javax.swing.JButton();
+        Btn00 = new javax.swing.JButton();
+        Btn01 = new javax.swing.JButton();
+        Btn02 = new javax.swing.JButton();
+        Btn20 = new javax.swing.JButton();
+        Btn21 = new javax.swing.JButton();
+        Btn22 = new javax.swing.JButton();
+        Btn23 = new javax.swing.JButton();
+        Btn24 = new javax.swing.JButton();
+        Btn44 = new javax.swing.JButton();
+        Btn30 = new javax.swing.JButton();
+        Btn31 = new javax.swing.JButton();
+        Btn32 = new javax.swing.JButton();
+        Btn33 = new javax.swing.JButton();
+        Btn34 = new javax.swing.JButton();
+        Btn40 = new javax.swing.JButton();
+        Btn41 = new javax.swing.JButton();
+        Btn42 = new javax.swing.JButton();
+        Btn43 = new javax.swing.JButton();
+        Op01V = new javax.swing.JLabel();
+        Op04V = new javax.swing.JLabel();
+        Op11V = new javax.swing.JLabel();
+        Op21V = new javax.swing.JLabel();
+        Op31V = new javax.swing.JLabel();
+        panelgrid = new javax.swing.JPanel();
+        Op101 = new javax.swing.JLabel();
+        Op201 = new javax.swing.JLabel();
+        Op301 = new javax.swing.JLabel();
+        Op401 = new javax.swing.JLabel();
+        Op001 = new javax.swing.JLabel();
+        Op12V = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        Op012 = new javax.swing.JLabel();
+        Op112 = new javax.swing.JLabel();
+        Op212 = new javax.swing.JLabel();
+        Op312 = new javax.swing.JLabel();
+        Op412 = new javax.swing.JLabel();
+        Op13V = new javax.swing.JLabel();
+        Op23V = new javax.swing.JLabel();
+        Op33V = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        Op023 = new javax.swing.JLabel();
+        Op123 = new javax.swing.JLabel();
+        Op223 = new javax.swing.JLabel();
+        Op323 = new javax.swing.JLabel();
+        Op423 = new javax.swing.JLabel();
+        Op14V = new javax.swing.JLabel();
+        Op24V = new javax.swing.JLabel();
+        Op34V = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        Op034 = new javax.swing.JLabel();
+        Op134 = new javax.swing.JLabel();
+        Op234 = new javax.swing.JLabel();
+        Op334 = new javax.swing.JLabel();
+        Op434 = new javax.swing.JLabel();
+        Op00V = new javax.swing.JLabel();
+        Op02V = new javax.swing.JLabel();
+        Op22V = new javax.swing.JLabel();
+        Op10V = new javax.swing.JLabel();
+        Op20V = new javax.swing.JLabel();
+        Op32V = new javax.swing.JLabel();
+        Op30V = new javax.swing.JLabel();
+        Op03V = new javax.swing.JLabel();
+        NumbersPanel = new javax.swing.JPanel();
+        Btn2 = new javax.swing.JToggleButton();
+        Btn3 = new javax.swing.JToggleButton();
+        Btn1 = new javax.swing.JToggleButton();
+        Btn5 = new javax.swing.JToggleButton();
+        Btn4 = new javax.swing.JToggleButton();
+        Btn6 = new javax.swing.JToggleButton();
+        IniciarJuego = new javax.swing.JButton();
+        BorrarJugada = new javax.swing.JButton();
+        RehacerJugada = new javax.swing.JButton();
+        TerminarJuego = new javax.swing.JButton();
+        Top10 = new javax.swing.JButton();
+        TerminarJuego1 = new javax.swing.JButton();
+        GuardarJuego = new javax.swing.JButton();
+        CargarJuego = new javax.swing.JButton();
+        NombreTXT = new javax.swing.JTextField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setBackground(new java.awt.Color(153, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Futoshiki");
+        jLabel2.setOpaque(true);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 110, -1));
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel1.setText("NIVEL");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 51, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel3.setText("Nombre del jugador");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 101, -1, -1));
+
+        NivelTXT.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        NivelTXT.setText("a");
+        NivelTXT.setToolTipText("");
+        NivelTXT.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(NivelTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 190, 30));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Btn03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn03ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn03, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 55, 47));
+
+        Btn04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn04ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn04, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 27, 55, 47));
+
+        Btn10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn10ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 50, 50));
+
+        Btn11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn11ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn11, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 119, 55, 47));
+
+        Btn12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn12ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 55, 47));
+
+        Btn13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn13ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn13, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 119, 55, 47));
+
+        Btn14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn14ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn14, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 119, 55, 47));
+
+        Btn00.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn00ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn00, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 27, 55, 47));
+
+        Btn01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn01ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn01, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 27, 55, 47));
+
+        Btn02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn02ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn02, new org.netbeans.lib.awtextra.AbsoluteConstraints(227, 27, 55, 47));
+
+        Btn20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn20ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 55, 47));
+
+        Btn21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn21ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn21, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 55, 47));
+
+        Btn22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn22ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn22, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 55, 47));
+
+        Btn23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn23ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn23, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 50, 50));
+
+        Btn24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn24ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn24, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 55, 47));
+
+        Btn44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn44ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn44, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 352, 55, 50));
+
+        Btn30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn30ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn30, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 276, 55, 47));
+
+        Btn31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn31ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn31, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 276, 55, 47));
+
+        Btn32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn32ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn32, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 55, 50));
+
+        Btn33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn33ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn33, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 50, 50));
+
+        Btn34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn34ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn34, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 276, 55, 47));
+
+        Btn40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn40ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn40, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 55, 47));
+
+        Btn41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn41ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn41, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 50, 50));
+
+        Btn42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn42ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn42, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 55, 50));
+
+        Btn43.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn43ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn43, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 55, 47));
+
+        Op01V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op01V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op01V.setText("∧");
+        jPanel1.add(Op01V, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
+
+        Op04V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op04V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op04V.setText("∧");
+        jPanel1.add(Op04V, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, -1));
+
+        Op11V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op11V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op11V.setText("∧");
+        jPanel1.add(Op11V, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
+
+        Op21V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op21V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op21V.setText("∧");
+        jPanel1.add(Op21V, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
+
+        Op31V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op31V.setText("∧");
+        jPanel1.add(Op31V, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
+
+        panelgrid.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Op101.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op101.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op101.setText(">");
+        panelgrid.add(Op101, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 20, -1));
+
+        Op201.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op201.setText(">");
+        panelgrid.add(Op201, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        Op301.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op301.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op301.setText(">");
+        panelgrid.add(Op301, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+
+        Op401.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op401.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op401.setText(">");
+        Op401.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelgrid.add(Op401, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        Op001.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op001.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op001.setText(">");
+        Op001.setFocusable(false);
+        Op001.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelgrid.add(Op001, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+
+        jPanel1.add(panelgrid, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 0, -1, 402));
+
+        Op12V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op12V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op12V.setText("∧");
+        jPanel1.add(Op12V, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Op012.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op012.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op012.setText(">");
+        jPanel3.add(Op012, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        Op112.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op112.setText(">");
+        jPanel3.add(Op112, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+
+        Op212.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op212.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op212.setText(">");
+        Op212.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(Op212, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        Op312.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op312.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op312.setText(">");
+        jPanel3.add(Op312, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+
+        Op412.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op412.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op412.setText(">");
+        Op412.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(Op412, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 50, 400));
+
+        Op13V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op13V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op13V.setText("∧");
+        jPanel1.add(Op13V, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, -1));
+
+        Op23V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op23V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op23V.setText("∧");
+        jPanel1.add(Op23V, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
+
+        Op33V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op33V.setText("∧");
+        jPanel1.add(Op33V, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, -1, -1));
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Op023.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op023.setText(">");
+        jPanel4.add(Op023, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 46, -1));
+
+        Op123.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op123.setText(">");
+        jPanel4.add(Op123, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        Op223.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op223.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op223.setText(">");
+        jPanel4.add(Op223, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+
+        Op323.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op323.setText(">");
+        jPanel4.add(Op323, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+
+        Op423.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op423.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op423.setText(">");
+        jPanel4.add(Op423, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 40, 400));
+
+        Op14V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op14V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op14V.setText("∧");
+        jPanel1.add(Op14V, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, -1, -1));
+
+        Op24V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op24V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op24V.setText("∧");
+        jPanel1.add(Op24V, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, -1, -1));
+
+        Op34V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op34V.setText("∧");
+        jPanel1.add(Op34V, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, -1, -1));
+
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Op034.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op034.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op034.setText(">");
+        jPanel6.add(Op034, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, -1));
+
+        Op134.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op134.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op134.setText(">");
+        jPanel6.add(Op134, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        Op234.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op234.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op234.setText(">");
+        jPanel6.add(Op234, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+
+        Op334.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op334.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op334.setText(">");
+        jPanel6.add(Op334, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+
+        Op434.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        Op434.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op434.setText(">");
+        jPanel6.add(Op434, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 50, 390));
+
+        Op00V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op00V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op00V.setText("∧");
+        jPanel1.add(Op00V, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
+        Op02V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op02V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op02V.setText("∧");
+        jPanel1.add(Op02V, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
+
+        Op22V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op22V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op22V.setText("∧");
+        jPanel1.add(Op22V, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, -1, -1));
+
+        Op10V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op10V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op10V.setText("∧");
+        jPanel1.add(Op10V, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+
+        Op20V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op20V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op20V.setText("∧");
+        jPanel1.add(Op20V, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+
+        Op32V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op32V.setText("∧");
+        jPanel1.add(Op32V, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
+
+        Op30V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op30V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op30V.setText("∧");
+        jPanel1.add(Op30V, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+
+        Op03V.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Op03V.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Op03V.setText("∧");
+        jPanel1.add(Op03V, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 144, 500, 415));
+
+        NumbersPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Opciones.add(Btn2);
+        Btn2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Btn2.setText("2");
+        NumbersPanel.add(Btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 50, 50));
+
+        Opciones.add(Btn3);
+        Btn3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Btn3.setText("3");
+        NumbersPanel.add(Btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 50, 50));
+
+        Opciones.add(Btn1);
+        Btn1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Btn1.setText("1");
+        Btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn1ActionPerformed(evt);
+            }
+        });
+        NumbersPanel.add(Btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 50, 50));
+
+        Opciones.add(Btn5);
+        Btn5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Btn5.setText("5");
+        NumbersPanel.add(Btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 50, 50));
+
+        Opciones.add(Btn4);
+        Btn4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Btn4.setText("4");
+        Btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn4ActionPerformed(evt);
+            }
+        });
+        NumbersPanel.add(Btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 50, 50));
+
+        Opciones.add(Btn6);
+        Btn6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Btn6.setText("Borrar");
+        NumbersPanel.add(Btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 90, 50));
+
+        getContentPane().add(NumbersPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, -1, 470));
+
+        IniciarJuego.setBackground(new java.awt.Color(204, 0, 0));
+        IniciarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        IniciarJuego.setText("Iniciar Juego");
+        IniciarJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IniciarJuegoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(IniciarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 577, -1, 52));
+
+        BorrarJugada.setBackground(new java.awt.Color(0, 204, 255));
+        BorrarJugada.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        BorrarJugada.setText("Borrar Jugada");
+        BorrarJugada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarJugadaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BorrarJugada, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 577, -1, 52));
+
+        RehacerJugada.setBackground(new java.awt.Color(255, 153, 0));
+        RehacerJugada.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        RehacerJugada.setText("Rehacer Jugada");
+        RehacerJugada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RehacerJugadaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RehacerJugada, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 577, -1, 52));
+
+        TerminarJuego.setBackground(new java.awt.Color(0, 153, 0));
+        TerminarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        TerminarJuego.setText("Terminar Juego");
+        TerminarJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TerminarJuegoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(TerminarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 640, -1, 52));
+
+        Top10.setBackground(new java.awt.Color(255, 255, 0));
+        Top10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        Top10.setText("Top 10");
+        getContentPane().add(Top10, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 577, -1, 52));
+
+        TerminarJuego1.setBackground(new java.awt.Color(153, 204, 255));
+        TerminarJuego1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        TerminarJuego1.setText("Borrar Juego");
+        getContentPane().add(TerminarJuego1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 640, -1, 52));
+
+        GuardarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        GuardarJuego.setText("Guardar Juego");
+        getContentPane().add(GuardarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 635, -1, -1));
+
+        CargarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        CargarJuego.setText("Cargar Juego");
+        getContentPane().add(CargarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 675, 150, -1));
+
+        NombreTXT.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        getContentPane().add(NombreTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 270, -1));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
       private void Btn01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn01ActionPerformed
             // TODO add your handling code here:
@@ -596,17 +802,21 @@ public class JugarFrame extends javax.swing.JFrame {
       private void IniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarJuegoActionPerformed
             // TODO add your handling code here:
             if (!started) {
+                  if (NombreTXT.getText().length() < 1 || NombreTXT.getText().length() > 20){
+                      JOptionPane.showMessageDialog(this, "El nombre debe tener una longitud entre 1 y 20 caracteres.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                      return;
+                  }
                   started = true;
-                  // random partida
-                  partida = Partida.getFaciles().get(0);
-                  juego = new Juego(partida, NombreTXT.getText(), Btn00, Btn01, Btn02, Btn03, Btn04, Btn10, Btn11, Btn12, Btn13, Btn14, Btn20, Btn21, Btn22, Btn23, Btn24, Btn30, Btn31, Btn32, Btn33, Btn34, Btn40, Btn41, Btn42, Btn43, Btn44);
+                  juego = new Juego(partida, NombreTXT.getText(), casillas);
                   
+                  NombreTXT.setEditable(false);
                   // si hay timer
                   
                   Btn1.setSelected(true);
-                  
+                  IniciarJuego.setEnabled(false);
+                  TerminarJuego.setEnabled(true);
             }
-            
       }//GEN-LAST:event_IniciarJuegoActionPerformed
 
       private void Btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn1ActionPerformed
@@ -804,6 +1014,27 @@ public class JugarFrame extends javax.swing.JFrame {
             // TODO add your handling code here:
       }//GEN-LAST:event_Btn4ActionPerformed
 
+    private void TerminarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TerminarJuegoActionPerformed
+        // TODO add your handling code here:
+        Object[] options = {"Sí",
+                            "No"};
+        int respuesta = JOptionPane.showOptionDialog(this,
+            "¿Está seguro de terminar el juego (Sí o No)?",
+            "Terminar juego",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,     //do not use a custom Icon
+            options,  //the titles of buttons
+            options[0]); //default button title
+        if (respuesta == JOptionPane.YES_OPTION){
+            IniciarJuego.setEnabled(true);
+            TerminarJuego.setEnabled(false);
+            establecerPartida();
+            NombreTXT.setEditable(true);
+            started = false;
+        }
+    }//GEN-LAST:event_TerminarJuegoActionPerformed
+
       /**
        * @param args the command line arguments
        */
@@ -839,77 +1070,97 @@ public class JugarFrame extends javax.swing.JFrame {
             });
       }
 
-      // Variables declaration - do not modify//GEN-BEGIN:variables
-      private javax.swing.JButton BorrarJugada;
-      private javax.swing.JButton Btn00;
-      private javax.swing.JButton Btn01;
-      private javax.swing.JButton Btn02;
-      private javax.swing.JButton Btn03;
-      private javax.swing.JButton Btn04;
-      private javax.swing.JToggleButton Btn1;
-      private javax.swing.JButton Btn10;
-      private javax.swing.JButton Btn11;
-      private javax.swing.JButton Btn12;
-      private javax.swing.JButton Btn13;
-      private javax.swing.JButton Btn14;
-      private javax.swing.JToggleButton Btn2;
-      private javax.swing.JButton Btn20;
-      private javax.swing.JButton Btn21;
-      private javax.swing.JButton Btn22;
-      private javax.swing.JButton Btn23;
-      private javax.swing.JButton Btn24;
-      private javax.swing.JToggleButton Btn3;
-      private javax.swing.JButton Btn30;
-      private javax.swing.JButton Btn31;
-      private javax.swing.JButton Btn32;
-      private javax.swing.JButton Btn33;
-      private javax.swing.JButton Btn34;
-      private javax.swing.JToggleButton Btn4;
-      private javax.swing.JButton Btn40;
-      private javax.swing.JButton Btn41;
-      private javax.swing.JButton Btn42;
-      private javax.swing.JButton Btn43;
-      private javax.swing.JButton Btn44;
-      private javax.swing.JToggleButton Btn5;
-      private javax.swing.JToggleButton Btn6;
-      private javax.swing.JButton CargarJuego;
-      private javax.swing.JButton GuardarJuego;
-      private javax.swing.JButton IniciarJuego;
-      private javax.swing.JLabel NivelTXT;
-      private javax.swing.JLabel NombreTXT;
-      private javax.swing.JPanel NumbersPanel;
-      private javax.swing.JLabel Op001;
-      private javax.swing.JLabel Op012;
-      private javax.swing.JLabel Op023;
-      private javax.swing.JLabel Op034;
-      private javax.swing.JLabel Op101;
-      private javax.swing.JLabel Op112;
-      private javax.swing.JLabel Op123;
-      private javax.swing.JLabel Op134;
-      private javax.swing.JLabel Op201;
-      private javax.swing.JLabel Op212;
-      private javax.swing.JLabel Op223;
-      private javax.swing.JLabel Op234;
-      private javax.swing.JLabel Op301;
-      private javax.swing.JLabel Op312;
-      private javax.swing.JLabel Op323;
-      private javax.swing.JLabel Op334;
-      private javax.swing.JLabel Op412;
-      private javax.swing.JLabel Op423;
-      private javax.swing.JLabel Op434;
-      private javax.swing.JLabel Op501;
-      private javax.swing.ButtonGroup Opciones;
-      private javax.swing.JButton RehacerJugada;
-      private javax.swing.JButton TerminarJuego;
-      private javax.swing.JButton TerminarJuego1;
-      private javax.swing.JButton Top10;
-      private javax.swing.JLabel jLabel1;
-      private javax.swing.JLabel jLabel2;
-      private javax.swing.JLabel jLabel3;
-      private javax.swing.JPanel jPanel1;
-      private javax.swing.JPanel jPanel3;
-      private javax.swing.JPanel jPanel4;
-      private javax.swing.JPanel jPanel6;
-      private javax.swing.JPanel panelgrid;
-      // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BorrarJugada;
+    private javax.swing.JButton Btn00;
+    private javax.swing.JButton Btn01;
+    private javax.swing.JButton Btn02;
+    private javax.swing.JButton Btn03;
+    private javax.swing.JButton Btn04;
+    private javax.swing.JToggleButton Btn1;
+    private javax.swing.JButton Btn10;
+    private javax.swing.JButton Btn11;
+    private javax.swing.JButton Btn12;
+    private javax.swing.JButton Btn13;
+    private javax.swing.JButton Btn14;
+    private javax.swing.JToggleButton Btn2;
+    private javax.swing.JButton Btn20;
+    private javax.swing.JButton Btn21;
+    private javax.swing.JButton Btn22;
+    private javax.swing.JButton Btn23;
+    private javax.swing.JButton Btn24;
+    private javax.swing.JToggleButton Btn3;
+    private javax.swing.JButton Btn30;
+    private javax.swing.JButton Btn31;
+    private javax.swing.JButton Btn32;
+    private javax.swing.JButton Btn33;
+    private javax.swing.JButton Btn34;
+    private javax.swing.JToggleButton Btn4;
+    private javax.swing.JButton Btn40;
+    private javax.swing.JButton Btn41;
+    private javax.swing.JButton Btn42;
+    private javax.swing.JButton Btn43;
+    private javax.swing.JButton Btn44;
+    private javax.swing.JToggleButton Btn5;
+    private javax.swing.JToggleButton Btn6;
+    private javax.swing.JButton CargarJuego;
+    private javax.swing.JButton GuardarJuego;
+    private javax.swing.JButton IniciarJuego;
+    private javax.swing.JLabel NivelTXT;
+    private javax.swing.JTextField NombreTXT;
+    private javax.swing.JPanel NumbersPanel;
+    private javax.swing.JLabel Op001;
+    private javax.swing.JLabel Op00V;
+    private javax.swing.JLabel Op012;
+    private javax.swing.JLabel Op01V;
+    private javax.swing.JLabel Op023;
+    private javax.swing.JLabel Op02V;
+    private javax.swing.JLabel Op034;
+    private javax.swing.JLabel Op03V;
+    private javax.swing.JLabel Op04V;
+    private javax.swing.JLabel Op101;
+    private javax.swing.JLabel Op10V;
+    private javax.swing.JLabel Op112;
+    private javax.swing.JLabel Op11V;
+    private javax.swing.JLabel Op123;
+    private javax.swing.JLabel Op12V;
+    private javax.swing.JLabel Op134;
+    private javax.swing.JLabel Op13V;
+    private javax.swing.JLabel Op14V;
+    private javax.swing.JLabel Op201;
+    private javax.swing.JLabel Op20V;
+    private javax.swing.JLabel Op212;
+    private javax.swing.JLabel Op21V;
+    private javax.swing.JLabel Op223;
+    private javax.swing.JLabel Op22V;
+    private javax.swing.JLabel Op234;
+    private javax.swing.JLabel Op23V;
+    private javax.swing.JLabel Op24V;
+    private javax.swing.JLabel Op301;
+    private javax.swing.JLabel Op30V;
+    private javax.swing.JLabel Op312;
+    private javax.swing.JLabel Op31V;
+    private javax.swing.JLabel Op323;
+    private javax.swing.JLabel Op32V;
+    private javax.swing.JLabel Op334;
+    private javax.swing.JLabel Op33V;
+    private javax.swing.JLabel Op34V;
+    private javax.swing.JLabel Op401;
+    private javax.swing.JLabel Op412;
+    private javax.swing.JLabel Op423;
+    private javax.swing.JLabel Op434;
+    private javax.swing.ButtonGroup Opciones;
+    private javax.swing.JButton RehacerJugada;
+    private javax.swing.JButton TerminarJuego;
+    private javax.swing.JButton TerminarJuego1;
+    private javax.swing.JButton Top10;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel panelgrid;
+    // End of variables declaration//GEN-END:variables
 }

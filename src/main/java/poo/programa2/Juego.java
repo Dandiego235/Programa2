@@ -9,42 +9,18 @@ import java.awt.Component;
 import java.util.*;
 import javax.swing.JOptionPane;
 /**
- *
- * @author dandi
+ * Esta clase se usa para representar un juego de futoshiki.
+ * @author Daniel Granados Retana y Diego Granados Retana
  */
 public class Juego {
-      private javax.swing.JButton[][] casillas;
+      private javax.swing.JButton [][] casillas;
       private Partida partida;
       private Stack<Jugada> jugadas;
       private Stack<Jugada> redoJugadas;
       private Marca marca;
-      public Juego(Partida pPartida, String nombre, javax.swing.JButton button00, javax.swing.JButton button01, javax.swing.JButton button02, javax.swing.JButton button03, javax.swing.JButton button04,javax.swing.JButton button10, javax.swing.JButton button11, javax.swing.JButton button12, javax.swing.JButton button13, javax.swing.JButton button14,javax.swing.JButton button20, javax.swing.JButton button21, javax.swing.JButton button22, javax.swing.JButton button23, javax.swing.JButton button24,javax.swing.JButton button30, javax.swing.JButton button31, javax.swing.JButton button32, javax.swing.JButton button33, javax.swing.JButton button34,javax.swing.JButton button40, javax.swing.JButton button41, javax.swing.JButton button42, javax.swing.JButton button43, javax.swing.JButton button44){
-            casillas = new javax.swing.JButton[5][5];
-            casillas[0][0] = button00;
-            casillas[0][1] = button01;
-            casillas[0][2] = button02;
-            casillas[0][3] = button03;
-            casillas[0][4] = button04;
-            casillas[1][0] = button00;
-            casillas[1][1] = button11;
-            casillas[1][2] = button12;
-            casillas[1][3] = button13;
-            casillas[1][4] = button14;
-            casillas[2][0] = button20;
-            casillas[2][1] = button21;
-            casillas[2][2] = button22;
-            casillas[2][3] = button23;
-            casillas[2][4] = button24;
-            casillas[3][0] = button30;
-            casillas[3][1] = button31;
-            casillas[3][2] = button32;
-            casillas[3][3] = button33;
-            casillas[3][4] = button34;
-            casillas[4][0] = button40;
-            casillas[4][1] = button41;
-            casillas[4][2] = button42;
-            casillas[4][3] = button43;
-            casillas[4][4] = button44;            
+      
+      public Juego(Partida pPartida, String nombre, javax.swing.JButton [][] pCasillas){
+            casillas = pCasillas;         
             jugadas = new Stack<>();
             marca = new Marca(nombre);
             partida = pPartida;
