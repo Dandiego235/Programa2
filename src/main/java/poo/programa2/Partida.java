@@ -33,6 +33,7 @@ public class Partida {
     private static ArrayList<Integer> ordenIntermedio = new ArrayList<>();
     private static ArrayList<Integer> ordenDificil = new ArrayList<>();
     private static HashMap<String, ArrayList<Integer>> ordenesPorNivel = new HashMap<>();
+    private static Document document;
     
     /**
      * Constructor
@@ -99,7 +100,7 @@ public class Partida {
         try{
             File partidasFile = new File("src\\main\\java\\poo\\programa2\\futoshiki2022partidas.xml");
             SAXReader reader = new SAXReader();
-            Document document = reader.read(partidasFile); // leemos el partido
+            document = reader.read(partidasFile); // leemos el partido
             List<Node> nodosPartida = document.selectNodes("/partidasFutoshiki/partida"); // obtenemos una lista con los nodos que empiezan con partida.
             
             for (Node partidaNodo : nodosPartida){ // por cada partida, creamos un objeto de la partida

@@ -12,9 +12,16 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import poo.programa2.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
 /**
  *
- * @author dandi
+ * @author Daniel Granados Retana, carné 2022104692, y Diego Granados Retana, carné 2022158363
  */
 public class JugarFrame extends javax.swing.JFrame {
     private final char and = '∧';
@@ -25,16 +32,23 @@ public class JugarFrame extends javax.swing.JFrame {
     private ArrayList<javax.swing.JLabel> labelsHorizontales = new ArrayList<>();
     private ArrayList<javax.swing.JLabel> labelsVerticales = new ArrayList<>();
     private javax.swing.JButton [][] casillas;
+    private int index; // indice de la partida.
       
-    private void establecerPartida(){
-        int index = Partida.getIndex(Configuracion.getNivel());
-        partida = Partida.getPartidasPorNivel().get(Configuracion.getNivel()).get(index);
+    private void resetTablero(){
         for (javax.swing.JLabel label : labelsHorizontales){
           label.setText("");
         }
         for (javax.swing.JLabel label : labelsVerticales){
           label.setText("");
         }
+        for (javax.swing.JButton[] fila : casillas){
+            for (javax.swing.JButton button : fila){
+                button.setText("");
+            }
+        }
+    }
+    
+    private void establecerTablero(){
         for(Operacion desigualdad : partida.getOperaciones()){
             switch(desigualdad.getTipo()){
                 case 'a':
@@ -50,14 +64,17 @@ public class JugarFrame extends javax.swing.JFrame {
                     labelsVerticales.get(5*desigualdad.getIndiceFila() + desigualdad.getIndiceColumna()).setText("∧");  
             }
         }
-        for (javax.swing.JButton[] fila : casillas){
-            for (javax.swing.JButton button : fila){
-                button.setText("");
-            }
-        }
+
         for(Operacion constante : partida.getConstantes()){
             casillas[constante.getIndiceFila()][constante.getIndiceColumna()].setText(Character.toString(constante.getTipo()));
         }
+    }
+    
+    private void establecerPartida(){
+        index = Partida.getIndex(Configuracion.getNivel());
+        partida = Partida.getPartidasPorNivel().get(Configuracion.getNivel()).get(index);
+        resetTablero();
+        establecerTablero();
     }
       
       /**
@@ -136,6 +153,12 @@ public class JugarFrame extends javax.swing.JFrame {
             casillas[4][3] = Btn43;
             casillas[4][4] = Btn44;
             establecerPartida();
+            GuardarJuego.setEnabled(false);
+            RehacerJugada.setEnabled(false);
+            BorrarJugada.setEnabled(false);
+            TerminarJuego.setEnabled(false);
+            BorrarJuego.setEnabled(false);
+            
         }
       /**
        * This method is called from within the constructor to initialize the
@@ -233,7 +256,7 @@ public class JugarFrame extends javax.swing.JFrame {
         RehacerJugada = new javax.swing.JButton();
         TerminarJuego = new javax.swing.JButton();
         Top10 = new javax.swing.JButton();
-        TerminarJuego1 = new javax.swing.JButton();
+        BorrarJuego = new javax.swing.JButton();
         GuardarJuego = new javax.swing.JButton();
         CargarJuego = new javax.swing.JButton();
         NombreTXT = new javax.swing.JTextField();
@@ -743,17 +766,27 @@ public class JugarFrame extends javax.swing.JFrame {
         Top10.setText("Top 10");
         getContentPane().add(Top10, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 577, -1, 52));
 
-        TerminarJuego1.setBackground(new java.awt.Color(153, 204, 255));
-        TerminarJuego1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        TerminarJuego1.setText("Borrar Juego");
-        getContentPane().add(TerminarJuego1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 640, -1, 52));
+        BorrarJuego.setBackground(new java.awt.Color(153, 204, 255));
+        BorrarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        BorrarJuego.setText("Borrar Juego");
+        getContentPane().add(BorrarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 640, -1, 52));
 
         GuardarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         GuardarJuego.setText("Guardar Juego");
+        GuardarJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarJuegoActionPerformed(evt);
+            }
+        });
         getContentPane().add(GuardarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 635, -1, -1));
 
         CargarJuego.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         CargarJuego.setText("Cargar Juego");
+        CargarJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarJuegoActionPerformed(evt);
+            }
+        });
         getContentPane().add(CargarJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 675, 150, -1));
 
         NombreTXT.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -799,6 +832,23 @@ public class JugarFrame extends javax.swing.JFrame {
         return null;
     }
       
+      private void iniciarJuego(){
+          started = true;
+          juego = new Juego(partida, NombreTXT.getText(), casillas);
+
+          NombreTXT.setEditable(false);
+          // si hay timer
+
+          Btn1.setSelected(true);
+          IniciarJuego.setEnabled(false);
+          TerminarJuego.setEnabled(true);
+          GuardarJuego.setEnabled(true);
+          RehacerJugada.setEnabled(true);
+          BorrarJugada.setEnabled(true);
+          TerminarJuego.setEnabled(true);
+          BorrarJuego.setEnabled(true);
+      }
+      
       private void IniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarJuegoActionPerformed
             // TODO add your handling code here:
             if (!started) {
@@ -807,15 +857,7 @@ public class JugarFrame extends javax.swing.JFrame {
                             "Error", JOptionPane.ERROR_MESSAGE);
                       return;
                   }
-                  started = true;
-                  juego = new Juego(partida, NombreTXT.getText(), casillas);
-                  
-                  NombreTXT.setEditable(false);
-                  // si hay timer
-                  
-                  Btn1.setSelected(true);
-                  IniciarJuego.setEnabled(false);
-                  TerminarJuego.setEnabled(true);
+                  iniciarJuego();
             }
       }//GEN-LAST:event_IniciarJuegoActionPerformed
 
@@ -1032,8 +1074,82 @@ public class JugarFrame extends javax.swing.JFrame {
             establecerPartida();
             NombreTXT.setEditable(true);
             started = false;
+            GuardarJuego.setEnabled(false);
+            RehacerJugada.setEnabled(false);
+            BorrarJugada.setEnabled(false);
+            TerminarJuego.setEnabled(false);
+            BorrarJuego.setEnabled(false);
         }
     }//GEN-LAST:event_TerminarJuegoActionPerformed
+
+    /*private Document guardarPartida(){
+        Document document = DocumentHelper.createDocument();
+        Element save = document.addElement("partida");
+        save.addElement("nivel").addText(Configuracion.getNivel());
+        save.addElement("reloj").addText(Configuracion.getNivel());
+        save.addElement("horas").addText(Reloj.getHoras());
+        save.addElement("minutos").addText(Reloj.getMinutos());
+        save.addElement("segundos").addText(Reloj.getSegundos());
+        save.addElement("lado").addText(Boolean.toString(Configuracion.getLado()));
+        save.addElement("nombre").addText(NombreTXT.getText());
+        Element tablero = save.addElement("tablero");
+        for (javax.swing.JButton[] fila : casillas){
+            for (javax.swing.JButton casilla : fila){
+                tablero.addElement("casilla").addText(casilla.getText());
+            }
+        }
+        return document;
+    }*/
+    
+    
+    private void GuardarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarJuegoActionPerformed
+        // TODO add your handling code here:
+        try{
+            FileWriter save = new FileWriter("futoshiki2022juegoactual.dat");
+            save.write(Configuracion.getNivel() + "\n");
+            save.write(index + "\n");
+            save.write(Configuracion.getReloj() + "\n");
+            save.write(Reloj.getHoras() + "\n");
+            save.write(Reloj.getMinutos() + "\n");
+            save.write(Reloj.getSegundos() + "\n");
+            save.write(Boolean.toString(Configuracion.getLado()) + "\n");
+            save.write(NombreTXT.getText() + "\n");
+            for (javax.swing.JButton[] fila : casillas){
+                for (javax.swing.JButton casilla : fila){
+                    save.write(casilla.getText() + "\n");
+                }
+            }
+            save.close();
+            JOptionPane.showMessageDialog(this, "Partida guardada con éxito");
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(this, "No se pudo grabar la partida.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_GuardarJuegoActionPerformed
+
+    private void CargarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJuegoActionPerformed
+        // TODO add your handling code here:
+        try{
+            List<String> lineas = Files.readAllLines(Paths.get("futoshiki2022juegoactual.dat"));
+            Configuracion.setNivel(lineas.get(0));
+            NivelTXT.setText(lineas.get(0));
+            partida = Partida.getPartidasPorNivel().get(lineas.get(0)).get(Integer.parseInt(lineas.get(1)));
+            establecerTablero();
+            Configuracion.setReloj(lineas.get(2));
+            Reloj.setHoras(lineas.get(3));
+            Reloj.setMinutos(lineas.get(4));
+            Reloj.setSegundos(lineas.get(5));
+            Configuracion.setLado(Boolean.parseBoolean(lineas.get(6)));
+            NombreTXT.setText(lineas.get(7));
+            for (int casilla = 0; casilla < 25; casilla++){
+                casillas[casilla / 5][casilla % 5].setText(lineas.get(8 + casilla));
+            }
+            iniciarJuego();
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(this, "La partida no se pudo cargar porque el archivo no existe.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_CargarJuegoActionPerformed
 
       /**
        * @param args the command line arguments
@@ -1071,6 +1187,7 @@ public class JugarFrame extends javax.swing.JFrame {
       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BorrarJuego;
     private javax.swing.JButton BorrarJugada;
     private javax.swing.JButton Btn00;
     private javax.swing.JButton Btn01;
@@ -1152,7 +1269,6 @@ public class JugarFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup Opciones;
     private javax.swing.JButton RehacerJugada;
     private javax.swing.JButton TerminarJuego;
-    private javax.swing.JButton TerminarJuego1;
     private javax.swing.JButton Top10;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
