@@ -11,7 +11,7 @@ package poo.programa2;
 public class Configuracion {
     private static String nivel = "Fácil";
     private static String reloj = "Sí";
-    private static boolean lado = true;
+    private static boolean lado = true; // true es derecha e izquierda es false
 
     public static String getNivel() {
         return nivel;

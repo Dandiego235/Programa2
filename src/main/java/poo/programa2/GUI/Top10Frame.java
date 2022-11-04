@@ -4,17 +4,79 @@
  */
 package poo.programa2.GUI;
 
+import javax.swing.DefaultListModel;
+import poo.programa2.*;
+
 /**
  *
  * @author dandi
  */
 public class Top10Frame extends javax.swing.JFrame {
-
+      private DefaultListModel FacilListNombreModel;
+      private DefaultListModel IntermedioListNombreModel;
+      private DefaultListModel DificilListNombreModel;
+      private DefaultListModel FacilListTiempoModel;
+      private DefaultListModel IntermedioListTiempoModel;
+      private DefaultListModel DificilListTiempoModel;
       /**
        * Creates new form Top10Frame
        */
       public Top10Frame() {
             initComponents();
+            FacilListNombreModel = new DefaultListModel();
+            FacilListNombre.setModel(FacilListNombreModel);
+            IntermedioListNombreModel = new DefaultListModel();
+            IntermedioListNombre.setModel(IntermedioListNombreModel);
+            DificilListNombreModel = new DefaultListModel();
+            DificilListNombre.setModel(DificilListNombreModel);
+            FacilListTiempoModel = new DefaultListModel();
+            FacilListTiempo.setModel(FacilListTiempoModel);
+            IntermedioListTiempoModel = new DefaultListModel();
+            IntermedioListTiempo.setModel(IntermedioListTiempoModel);
+            DificilListTiempoModel = new DefaultListModel();
+            DificilListTiempo.setModel(DificilListTiempoModel);
+            FillFacilListModel();
+            FillIntermedioListModel();
+            FillDificilListModel();
+      }
+      
+      public void FillFacilListModel (){
+            if (FacilListNombreModel != null){
+               FacilListNombreModel.removeAllElements();
+               FacilListTiempoModel.removeAllElements();
+          }
+            int i = 0;
+          for (Marca marca : Marca.marcas.get("Fácil")){
+               FacilListNombreModel.addElement((i+1) + "- " + marca.getNombre());
+               FacilListTiempoModel.addElement(Marca.convertToString(marca.getTiempo()));
+               i++;
+          }
+      }
+      
+      public void FillIntermedioListModel (){
+            if (IntermedioListNombreModel != null){
+               IntermedioListNombreModel.removeAllElements();
+               IntermedioListTiempoModel.removeAllElements();
+          }
+            int i = 0;
+          for (Marca marca : Marca.marcas.get("Intermedio")){
+               IntermedioListNombreModel.addElement((i+1) + "- " + marca.getNombre());
+               IntermedioListTiempoModel.addElement(Marca.convertToString(marca.getTiempo()));
+               i++;
+          }
+      }
+      
+      public void FillDificilListModel (){
+            if (DificilListNombreModel != null){
+               DificilListNombreModel.removeAllElements();
+               DificilListTiempoModel.removeAllElements();
+            }
+            int i = 0;
+            for (Marca marca : Marca.marcas.get("Difícil")){
+               DificilListNombreModel.addElement((i+1) + "- " + marca.getNombre());
+               DificilListTiempoModel.addElement(Marca.convertToString(marca.getTiempo()));
+               i++;
+            }
       }
 
       /**
@@ -31,12 +93,18 @@ public class Top10Frame extends javax.swing.JFrame {
             jLabel3 = new javax.swing.JLabel();
             jLabel4 = new javax.swing.JLabel();
             jScrollPane1 = new javax.swing.JScrollPane();
-            FacilList = new javax.swing.JList<>();
+            FacilListNombre = new javax.swing.JList<>();
             jScrollPane2 = new javax.swing.JScrollPane();
-            IntermedioList = new javax.swing.JList<>();
+            IntermedioListNombre = new javax.swing.JList<>();
             jScrollPane3 = new javax.swing.JScrollPane();
-            DificilList = new javax.swing.JList<>();
+            DificilListNombre = new javax.swing.JList<>();
             CerrarButton = new javax.swing.JButton();
+            jScrollPane4 = new javax.swing.JScrollPane();
+            FacilListTiempo = new javax.swing.JList<>();
+            jScrollPane5 = new javax.swing.JScrollPane();
+            IntermedioListTiempo = new javax.swing.JList<>();
+            jScrollPane6 = new javax.swing.JScrollPane();
+            DificilListTiempo = new javax.swing.JList<>();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,27 +128,52 @@ public class Top10Frame extends javax.swing.JFrame {
             jLabel4.setText("NIVEL DIFÍCIL:");
             getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
 
-            FacilList.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-            jScrollPane1.setViewportView(FacilList);
+            FacilListNombre.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane1.setViewportView(FacilListNombre);
 
-            getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 290, 170));
+            getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 130, 140));
 
-            IntermedioList.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-            jScrollPane2.setViewportView(IntermedioList);
+            IntermedioListNombre.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane2.setViewportView(IntermedioListNombre);
 
-            getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 290, 150));
+            getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 130, 150));
 
-            DificilList.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-            jScrollPane3.setViewportView(DificilList);
+            DificilListNombre.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane3.setViewportView(DificilListNombre);
 
-            getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 290, 160));
+            getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 130, 160));
 
             CerrarButton.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
             CerrarButton.setText("Cerrar");
+            CerrarButton.addActionListener(new java.awt.event.ActionListener() {
+                  public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        CerrarButtonActionPerformed(evt);
+                  }
+            });
             getContentPane().add(CerrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 100, 50));
+
+            FacilListTiempo.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane4.setViewportView(FacilListTiempo);
+
+            getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 130, 140));
+
+            IntermedioListTiempo.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane5.setViewportView(IntermedioListTiempo);
+
+            getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 130, 150));
+
+            DificilListTiempo.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+            jScrollPane6.setViewportView(DificilListTiempo);
+
+            getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, 130, 160));
 
             pack();
       }// </editor-fold>//GEN-END:initComponents
+
+      private void CerrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarButtonActionPerformed
+            // TODO add your handling code here:
+            dispose();
+      }//GEN-LAST:event_CerrarButtonActionPerformed
 
       /**
        * @param args the command line arguments
@@ -119,9 +212,12 @@ public class Top10Frame extends javax.swing.JFrame {
 
       // Variables declaration - do not modify//GEN-BEGIN:variables
       private javax.swing.JButton CerrarButton;
-      private javax.swing.JList<String> DificilList;
-      private javax.swing.JList<String> FacilList;
-      private javax.swing.JList<String> IntermedioList;
+      private javax.swing.JList<String> DificilListNombre;
+      private javax.swing.JList<String> DificilListTiempo;
+      private javax.swing.JList<String> FacilListNombre;
+      private javax.swing.JList<String> FacilListTiempo;
+      private javax.swing.JList<String> IntermedioListNombre;
+      private javax.swing.JList<String> IntermedioListTiempo;
       private javax.swing.JLabel jLabel1;
       private javax.swing.JLabel jLabel2;
       private javax.swing.JLabel jLabel3;
@@ -129,5 +225,8 @@ public class Top10Frame extends javax.swing.JFrame {
       private javax.swing.JScrollPane jScrollPane1;
       private javax.swing.JScrollPane jScrollPane2;
       private javax.swing.JScrollPane jScrollPane3;
+      private javax.swing.JScrollPane jScrollPane4;
+      private javax.swing.JScrollPane jScrollPane5;
+      private javax.swing.JScrollPane jScrollPane6;
       // End of variables declaration//GEN-END:variables
 }

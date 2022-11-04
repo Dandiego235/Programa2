@@ -59,7 +59,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <des>z,0,3</des>
         <des>z,1,4</des>
         <des>b,2,1</des>
-        <des>z,2,1</des>
+        <des>y,2,1</des>
         <des>y,3,1</des>
         <des>y,3,2</des>
         <cons>2,0,1</cons>
@@ -72,27 +72,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
         <des>b,1,1</des>
         <des>z,1,4</des>
         <des>a,2,2</des>
-        <des>y,0,2</des>
+        <des>y,2,0</des>
         <cons>2,0,3</cons>
         <cons>4,4,4</cons>
     </partida>
     <partida>
         <nivel>Intermedio</nivel>
         <des>a,0,1</des>
-        <des>a,0,4</des>
-        <des>a,1,1</des>
-        <des>z,0,4</des>
-        <des>b,3,0</des>
-        <des>a,3,2</des>
-        <des>a,3,3</des>
-        <des>a,4,3</des>
-        <cons>5,4,1</cons>
-        <cons>2,4,2</cons>
-    </partida>
-    <partida>
-        <nivel>Intermedio</nivel>
-        <des>a,0,1</des>
-        <des>a,0,4</des>
+        <des>a,0,3</des>
         <des>a,1,1</des>
         <des>z,0,4</des>
         <des>b,3,0</des>

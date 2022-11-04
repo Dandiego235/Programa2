@@ -36,6 +36,19 @@ public class Reloj {
     public static void setSegundos(String segundosStr) {
         segundos = Integer.parseInt(segundosStr);
     }
+     
+    public static int getHorasInt() {
+        return horas;
+    }
+
+
+    public static int getMinutosInt() {
+        return  minutos;
+    }
+
+    public static int getSegundosInt() {
+        return segundos;
+    }
     
     /**
      * Función para validar si una entrada es máxima para ser minutos, segundos u horas.
