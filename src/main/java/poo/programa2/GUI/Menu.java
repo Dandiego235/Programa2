@@ -4,6 +4,11 @@
  */
 package poo.programa2.GUI;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dandiego
@@ -155,6 +160,16 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if (Desktop.isDesktopSupported()) { // se abre el archivo del manual de usuario
+            try {
+                File myFile = new File("src\\main\\java\\poo\\programa2\\programa2_manual_de_usuario.pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                  JOptionPane.showMessageDialog(this, "NO SE PUDO ABRIR LA AYUDA.", 
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                      return;
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

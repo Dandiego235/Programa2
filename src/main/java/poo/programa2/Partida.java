@@ -8,19 +8,17 @@ import java.util.ArrayList;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Collections;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
-import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
 /**
  * Esta clase contiene la configuración de la partida que se va a jugar.
- * @author Daniel Granados Retana, carné 2022104692 <dagranados@astudiantec.cr>
+ * @author Daniel Granados Retana, carné 2022104692 <dagranados@estudiantec.cr>
  */
 public class Partida {
     private ArrayList<Operacion> operaciones; // ArrayList para guardar las desigualdades

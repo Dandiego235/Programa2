@@ -1399,7 +1399,7 @@ public class JugarFrame extends javax.swing.JFrame {
             // 0=sí, 1=no, 
             if (input == 0){ // cierra la pestaña
                   started = false;
-                  if (!"No".equals(Configuracion.getReloj())){
+                  if (!("No".equals(Configuracion.getReloj())) && stopwatch != null){
                         stopwatch.stop();
                   }
                   dispose();
