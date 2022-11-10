@@ -1567,11 +1567,13 @@ public class JugarFrame extends javax.swing.JFrame {
             }
             save.write("J\n");
             
-            Stack<Jugada> copiaRedo = (Stack) juego.getRedoJugadas().clone(); // guardamos la pila de jugadas realizadas
-            while(!copiaRedo.isEmpty()){
-                Jugada jugada = copiaRedo.pop();
-                String jugStr = jugada.getNumero() + "," + jugada.getFila() + "," + jugada.getColumna() + "\n";
-                save.write(jugStr);
+            if (juego.getRedoJugadas() != null) {
+                Stack<Jugada> copiaRedo = (Stack) juego.getRedoJugadas().clone(); // guardamos la pila de jugadas realizadas
+                while(!copiaRedo.isEmpty()){
+                    Jugada jugada = copiaRedo.pop();
+                    String jugStr = jugada.getNumero() + "," + jugada.getFila() + "," + jugada.getColumna() + "\n";
+                    save.write(jugStr);
+                }
             }
             save.write("R\n");
             
@@ -1598,6 +1600,13 @@ public class JugarFrame extends javax.swing.JFrame {
             resetTablero(); // se borra el tablero
             establecerTablero(); // se vuelve a establecer el tablero con la partida recuperada
             Configuracion.setReloj(lineas.get(2)); // se obtiene el reloj
+            
+            // si se había guardado una partida con reloj o timer, se pone el frame
+            if (Configuracion.getReloj().equals("Timer") || Configuracion.getReloj().equals("Sí")){
+                relojFrame.setVisible(true);
+            } else { // si no tiene reloj, se elimina.
+                relojFrame.setVisible(true);
+            }
             HorasTXT.setText(lineas.get(3));
             MinutosTXT.setText(lineas.get(4));
             SegundosTXT.setText(lineas.get(5));
