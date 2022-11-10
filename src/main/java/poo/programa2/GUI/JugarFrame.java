@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Stack;
 
 /**
  *
@@ -1073,6 +1074,7 @@ public class JugarFrame extends javax.swing.JFrame {
                         horassave = HorasTXT.getText();
                         minutossave = MinutosTXT.getText();
                         segundossave = SegundosTXT.getText();
+                        
                         count = Integer.valueOf(HorasTXT.getText()) * 3600 + Integer.valueOf(MinutosTXT.getText()) * 60 + Integer.valueOf(SegundosTXT.getText()); // se calcula la cantidad de segundos totales con los que se pueden jugar.
                         startTimer(this);
                   } else if (Configuracion.getReloj().equals("Sí")){ // si hay un reloj, se empieza a correr
@@ -1373,6 +1375,9 @@ public class JugarFrame extends javax.swing.JFrame {
                   HorasTXT.setEditable(true);
                   MinutosTXT.setEditable(true);
                   SegundosTXT.setEditable(true);
+                  HorasTXT.setText(horassave);
+                  MinutosTXT.setText(minutossave);
+                  SegundosTXT.setText(segundossave);
                   count = Reloj.getHorasInt() * 3600 + Reloj.getMinutosInt() * 60 + Reloj.getSegundosInt();
             } else if(Configuracion.getReloj().equals("Sí")){
                   stopwatch.stop();
@@ -1541,16 +1546,35 @@ public class JugarFrame extends javax.swing.JFrame {
             save.write(Configuracion.getNivel() + "\n"); // se salva el nivel
             save.write(index + "\n"); // se salva el índice de la partida para volverla a desplegar luego
             save.write(Configuracion.getReloj() + "\n"); // se salva si hay reloj o no
-            save.write(Reloj.getHoras() + "\n"); // se salvan las horas, minutos y segundos
-            save.write(Reloj.getMinutos() + "\n");
-            save.write(Reloj.getSegundos() + "\n");
+            save.write(HorasTXT.getText() + "\n"); // se salvan las horas, minutos y segundos
+            save.write(MinutosTXT.getText() + "\n");
+            save.write(SegundosTXT.getText() + "\n");
             save.write(Boolean.toString(Configuracion.getLado()) + "\n"); // se salva el lado del panel
             save.write(NombreTXT.getText() + "\n"); // se salva el nombre del jugador
+            save.write(horassave + "\n"); // se salva el nombre del jugador
+            save.write(minutossave + "\n"); // se salva el nombre del jugador
+            save.write(segundossave + "\n"); // se salva el nombre del jugador
             for (javax.swing.JButton[] fila : casillas){ // se salvan todas las casillas
                 for (javax.swing.JButton casilla : fila){
                     save.write(casilla.getText() + "\n");
                 }
             }
+            Stack<Jugada> copia = (Stack) juego.getJugadas().clone(); // guardamos la pila de jugadas realizadas
+            while(!copia.isEmpty()){
+                Jugada jugada = copia.pop();
+                String jugStr = jugada.getNumero() + "," + jugada.getFila() + "," + jugada.getColumna() + "\n";
+                save.write(jugStr);
+            }
+            save.write("J\n");
+            
+            Stack<Jugada> copiaRedo = (Stack) juego.getRedoJugadas().clone(); // guardamos la pila de jugadas realizadas
+            while(!copiaRedo.isEmpty()){
+                Jugada jugada = copiaRedo.pop();
+                String jugStr = jugada.getNumero() + "," + jugada.getFila() + "," + jugada.getColumna() + "\n";
+                save.write(jugStr);
+            }
+            save.write("R\n");
+            
             save.close(); // se cierra el archivo
             JOptionPane.showMessageDialog(this, "Partida guardada con éxito"); // se da un mensaje de éxito
         } catch (IOException e){
@@ -1574,19 +1598,60 @@ public class JugarFrame extends javax.swing.JFrame {
             resetTablero(); // se borra el tablero
             establecerTablero(); // se vuelve a establecer el tablero con la partida recuperada
             Configuracion.setReloj(lineas.get(2)); // se obtiene el reloj
-            Reloj.setHoras(lineas.get(3)); // se obtienen las horas, minutos y segundos
-            Reloj.setMinutos(lineas.get(4));
-            Reloj.setSegundos(lineas.get(5));
             HorasTXT.setText(lineas.get(3));
             MinutosTXT.setText(lineas.get(4));
             SegundosTXT.setText(lineas.get(5));
+            count = Integer.valueOf(HorasTXT.getText()) * 3600 + Integer.valueOf(MinutosTXT.getText()) * 60 + Integer.valueOf(SegundosTXT.getText()); // se calcula la cantidad de segundos totales con los que se pueden jugar.
+            System.out.println("SEGUNDOS " + lineas.get(5));
             Configuracion.setLado(Boolean.parseBoolean(lineas.get(6))); // se obtiene el lado del 
             moveButtonPanel();
             NombreTXT.setText(lineas.get(7)); // se vuelve a poner el nombre
+            horassave = lineas.get(8);
+            minutossave = lineas.get(9);
+            segundossave = lineas.get(10);
+            
             for (int casilla = 0; casilla < 25; casilla++){ // se vuelven a poner los valores de las casillas
-                casillas[casilla / 5][casilla % 5].setText(lineas.get(8 + casilla));
+                casillas[casilla / 5][casilla % 5].setText(lineas.get(11 + casilla));
             }
+            
             IniciarJuegoActionPerformed(evt); // se inicia el juego otra vez
+            int indexList = 36;
+            // establecemos las pilas
+            System.out.println(lineas.get(indexList));
+            Stack<String> temp = new Stack<>(); // pila temporal para luego conseguir el orden verdadero de la pila
+            Stack<Jugada> jugadasStack = new Stack<>();
+            while(!lineas.get(indexList).equals("J")){ // mientras no haya llegado al indicador de dónde termina la pila del final de la pila
+                System.out.println(lineas.get(indexList));
+                temp.push(lineas.get(indexList++)); // va metiendo a la pila temporal
+            }
+            while(!temp.isEmpty()){
+                // como la pila se fue leyendo de atras para adelante, debemos popear los elementos para agregarlos en orden
+                String[] entry = temp.pop().split(",");
+                System.out.println(entry[0] + " " + entry[1] + " " + entry[2]);
+                int fila = Integer.parseInt(entry[1]);
+                int columna = Integer.parseInt(entry[2]);
+                jugadasStack.push(new Jugada(fila, columna, entry[0]));
+            }
+            System.out.println(lineas.get(indexList));
+            juego.setJugadas(jugadasStack);
+
+            indexList++;
+            temp = new Stack<>();
+            Stack<Jugada> rehacerStack = new Stack<>();
+            while(!lineas.get(indexList).equals("R")){ // mientras no haya llegado al indicador de dónde termina la pila del final de la pila
+                System.out.println(lineas.get(indexList));
+                temp.push(lineas.get(indexList++)); // va metiendo a la pila temporal
+            }
+            while(!temp.isEmpty()){
+                // como la pila se fue leyendo de atras para adelante, debemos popear los elementos para agregarlos en orden
+                String[] entry = temp.pop().split(",");
+                System.out.println(entry[0] + " " + entry[1] + " " + entry[2]);
+                int fila = Integer.parseInt(entry[1]);
+                int columna = Integer.parseInt(entry[2]);
+                rehacerStack.push(new Jugada(fila, columna, entry[0]));
+            }
+            System.out.println(lineas.get(indexList));
+            juego.setRedoJugadas(rehacerStack);
         } catch (IOException e){
             JOptionPane.showMessageDialog(this, "La partida no se pudo cargar porque el archivo no existe.", 
                 "Error", JOptionPane.ERROR_MESSAGE);

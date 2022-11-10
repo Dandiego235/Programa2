@@ -16,9 +16,9 @@ import poo.programa2.GUI.JugarFrame;
 public class Juego {
       private javax.swing.JButton [][] casillas; // almacena los botones de las casillas del tablero 
       private Partida partida; // almacena la partida.
-      private Stack<Jugada> jugadas; // En esta pila se almacenan lasj ugadas realizadas
+      private Stack<Jugada> jugadas; // En esta pila se almacenan las jugadas realizadas
       private Stack<Jugada> redoJugadas; // en esta pila se almacenan las jugadas borradas
-      
+
       // Constructor de la clase
       public Juego(Partida pPartida, String nombre, javax.swing.JButton [][] pCasillas){
             casillas = pCasillas;         
@@ -278,5 +278,20 @@ public class Juego {
             return true;
       }
       
+    public Stack<Jugada> getJugadas() {
+        return jugadas;
+    }
+
+    public void setJugadas(Stack<Jugada> jugadas) {
+        this.jugadas = jugadas;
+    }
+
+    public Stack<Jugada> getRedoJugadas() {
+        return redoJugadas;
+    }
+
+    public void setRedoJugadas(Stack<Jugada> redoJugadas) {
+        this.redoJugadas = redoJugadas;
+    }
       
 }
