@@ -23,9 +23,8 @@ public class Juego {
       public Juego(Partida pPartida, String nombre, javax.swing.JButton [][] pCasillas){
             casillas = pCasillas;         
             jugadas = new Stack<>();
-         //   marca = new Marca(nombre, Configuracion.getNivel());
             partida = pPartida;
-      }
+      } 
       
       // Esta función añade un número al tablero. Recibe el número, la fila y columna del botón y la ventana del juego.
       public boolean añadirNumero(String numero, int fila, int columna,Component window){ // recibe las coordenadas de la casilla a donde se va a poner el número
@@ -277,6 +276,4 @@ public class Juego {
             JOptionPane.showMessageDialog(window, "¡EXCELENTE! JUEGO TERMINADO CON ÉXITO");  
             return true;
       }
-      
-      
 }
