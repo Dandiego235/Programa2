@@ -145,32 +145,32 @@ public class Partida {
     }
 
     /**
-     *
-     * @return
+     * Obtiene la lista de partidas fáciles
+     * @return lista de partidas fáciles
      */
     public static ArrayList<Partida> getFaciles() {
         return faciles;
     }
 
     /**
-     *
-     * @return
+     * Obtiene la lista de partidas intermedias
+     * @return lista de partidas intermedias
      */
     public static ArrayList<Partida> getIntermedias() {
         return intermedias;
     }
 
     /**
-     *
-     * @return
+     * Obtiene la lista de partidas difíciles
+     * @return lista de partidas difíciles
      */
     public static ArrayList<Partida> getDificiles() {
         return dificiles;
     }
 
     /**
-     *
-     * @return
+     * HashMap que permite obtener la lista de partidas por nivel a partir del nombre del nivel
+     * @return hash map partidas por nivel
      */
     public static HashMap<String, ArrayList<Partida>> getPartidasPorNivel() {
         return partidasPorNivel;

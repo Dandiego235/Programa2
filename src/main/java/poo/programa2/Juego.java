@@ -18,15 +18,27 @@ public class Juego {
       private Partida partida; // almacena la partida.
       private Stack<Jugada> jugadas; // En esta pila se almacenan las jugadas realizadas
       private Stack<Jugada> redoJugadas; // en esta pila se almacenan las jugadas borradas
-
-      // Constructor de la clase
+      
+    /**
+     * Constructor de la clase
+     * @param pPartida
+     * @param nombre
+     * @param pCasillas
+     */
       public Juego(Partida pPartida, String nombre, javax.swing.JButton [][] pCasillas){
             casillas = pCasillas;         
             jugadas = new Stack<>();
             partida = pPartida;
-      } 
-      
-      // Esta función añade un número al tablero. Recibe el número, la fila y columna del botón y la ventana del juego.
+      }
+
+    /**
+     * Esta función añade un número al tablero. Recibe el número, la fila y columna del botón y la ventana del juego.
+     * @param numero
+     * @param fila
+     * @param columna
+     * @param window
+     * @return verdadero si se añadió y falso si no
+     */
       public boolean añadirNumero(String numero, int fila, int columna,Component window){ // recibe las coordenadas de la casilla a donde se va a poner el número
             // Se validan las restricciones
             for (javax.swing.JButton buttonIter : casillas[fila]){
@@ -236,7 +248,10 @@ public class Juego {
             return checkWin(window); // se revisa si ya se terminó el juego
       }
       
-      // Saca la última jugada
+    /**
+     * Saca la última jugada
+     * @param window
+     */
       public void borrarJugada(Component window){
             if (!jugadas.empty()){ // si la pila no está vacía
                   Jugada borrada = jugadas.pop(); // saca el último elemento
@@ -249,7 +264,11 @@ public class Juego {
             }
       }
       
-      public void rehacerJugada(Component window){
+    /**
+     * Rehace una jugada
+     * @param window
+     */
+    public void rehacerJugada(Component window){
             if (!redoJugadas.empty()){ // si la pila no está vacía
                   Jugada restored = redoJugadas.pop(); // saca el último elemento
                   jugadas.push(restored); // se mete a la pila de jugadas
@@ -265,7 +284,12 @@ public class Juego {
             }
       }
       
-      public boolean checkWin(Component window){
+    /**
+     * Revisa si se ganó la partida
+     * @param window
+     * @return verdadero si se ganó, falso si no
+     */
+    public boolean checkWin(Component window){
             for (int i = 0; i < 5; i++){
                   for (int j = 0; j < 5; j++){
                         if (casillas[i][j].getText().equals("")){
@@ -277,18 +301,34 @@ public class Juego {
             return true;
       }
       
+    /**
+     * Obtiene la pila de jugadas
+     * @return pila de jugadas
+     */
     public Stack<Jugada> getJugadas() {
         return jugadas;
     }
 
+    /**
+     * Estable la pila de jugadas
+     * @param jugadas
+     */
     public void setJugadas(Stack<Jugada> jugadas) {
         this.jugadas = jugadas;
     }
 
+    /**
+     * Obtiene la pila de jugadas por rehacer
+     * @return pila de redoJugadas
+     */
     public Stack<Jugada> getRedoJugadas() {
         return redoJugadas;
     }
 
+    /** 
+     * Establece la pila de jugadas a rehacer
+     * @param redoJugadas
+     */
     public void setRedoJugadas(Stack<Jugada> redoJugadas) {
         this.redoJugadas = redoJugadas;
     }

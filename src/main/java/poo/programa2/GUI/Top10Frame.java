@@ -8,7 +8,7 @@ import javax.swing.DefaultListModel;
 import poo.programa2.*;
 
 /**
- *
+ * Ventana para el Top 10
  * @author dandi
  */
 public class Top10Frame extends javax.swing.JFrame {
@@ -40,7 +40,10 @@ public class Top10Frame extends javax.swing.JFrame {
             FillDificilListModel();
       }
       
-      public void FillFacilListModel (){
+    /**
+     * Función que llena la lista del Top 10 del nivel fácil
+     */
+    public void FillFacilListModel (){
             if (FacilListNombreModel != null){
                FacilListNombreModel.removeAllElements();
                FacilListTiempoModel.removeAllElements();
@@ -53,7 +56,10 @@ public class Top10Frame extends javax.swing.JFrame {
           }
       }
       
-      public void FillIntermedioListModel (){
+    /**
+     * Función que llena la lista del Top 10 del nivel Intermedio
+     */
+    public void FillIntermedioListModel (){
             if (IntermedioListNombreModel != null){
                IntermedioListNombreModel.removeAllElements();
                IntermedioListTiempoModel.removeAllElements();
@@ -66,7 +72,10 @@ public class Top10Frame extends javax.swing.JFrame {
           }
       }
       
-      public void FillDificilListModel (){
+    /**
+     * Función que llena la lista del Top 10 del nivel difícil
+     */
+    public void FillDificilListModel (){
             if (DificilListNombreModel != null){
                DificilListNombreModel.removeAllElements();
                DificilListTiempoModel.removeAllElements();

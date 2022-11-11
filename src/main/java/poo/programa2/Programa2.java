@@ -7,8 +7,8 @@ package poo.programa2;
 import poo.programa2.GUI.Menu;
    
 /**
- *
- * @author Dandiego
+ * Programa 2 de POO. Futushiki
+ * @author Daniel Granados Retana, carné 2022104692, y Diego Granados Retana, carné 2022158363
  */
 public class Programa2 {
 

@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- *
+ * Ventana para el juego
  * @author Daniel Granados Retana, carné 2022104692, y Diego Granados Retana, carné 2022158363
  */
 public class JugarFrame extends javax.swing.JFrame {
@@ -39,6 +39,9 @@ public class JugarFrame extends javax.swing.JFrame {
     private String minutossave;
     private String segundossave;
     
+    /**
+     * Objeto para controlar el tiempo
+     */
     public static Timer stopwatch;
 
     int count = 0; // se usa para el contador del timer
@@ -101,6 +104,10 @@ public class JugarFrame extends javax.swing.JFrame {
     }
       
     // esta función mueve el panel de botones de acuerdo con el lado establecido en la configuración
+
+    /**
+     * Esta función mueve el panel de números de lado dependiendo de la configuración.
+     */
      public void moveButtonPanel(){
            if (!Configuracion.getLado()){
                  NumbersPanel.setLocation(57, 100);
@@ -942,7 +949,11 @@ public class JugarFrame extends javax.swing.JFrame {
             pack();
       }// </editor-fold>//GEN-END:initComponents
 
-      // Esta función inicia el reloj
+
+    /**
+     * Método que inicia el reloj
+     * @param window
+     */
       public void startClock(Component window){
             ActionListener action = new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -962,7 +973,10 @@ public class JugarFrame extends javax.swing.JFrame {
         stopwatch.start(); // empieza el reloj
       }
       
-      // esta función inicia el timer
+    /**
+     * Esta función inicia el timer
+     * @param window
+     */
       public void startTimer(Component window){
         ActionListener action = new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -1032,8 +1046,11 @@ public class JugarFrame extends javax.swing.JFrame {
             }
       }//GEN-LAST:event_Btn00ActionPerformed
 
-      
-      public String getSelectedButtonText() {
+    /**
+     * Función que obtiene el texto del botón seleccioando
+     * @return texto del botón seleccionado
+     */
+    public String getSelectedButtonText() {
         for (Enumeration<AbstractButton> buttons = Opciones.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
 

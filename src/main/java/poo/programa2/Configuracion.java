@@ -6,6 +6,7 @@ package poo.programa2;
 
 /**
  * Clase para guardar los parámetros de la configuración.
+ * No se deberían hacer instancias de esta clase.
  * @author Daniel Granados Retana y Diego Granados Retana
  */
 public class Configuracion {
@@ -13,26 +14,50 @@ public class Configuracion {
     private static String reloj = "Sí";
     private static boolean lado = true; // true es derecha e izquierda es false
 
+    /**
+     * Retorna el nivel
+     * @return nivel
+     */
     public static String getNivel() {
         return nivel;
     }
 
+    /**
+     * Establece el nivel
+     * @param nivel
+     */
     public static void setNivel(String nivel) {
         Configuracion.nivel = nivel;
     }
 
+    /**
+     * Obtiene el reloj
+     * @return reloj
+     */
     public static String getReloj() {
         return reloj;
     }
 
+    /**
+     * Establece el reloj
+     * @param reloj
+     */
     public static void setReloj(String reloj) {
         Configuracion.reloj = reloj;
     }
 
+    /**
+     * Obtiene el lado
+     * @return lado
+     */
     public static boolean getLado() {
         return lado;
     }
 
+    /**
+     * Establece el lado
+     * @param lado
+     */
     public static void setLado(boolean lado) {
         Configuracion.lado = lado;
     }

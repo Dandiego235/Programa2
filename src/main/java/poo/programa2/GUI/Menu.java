@@ -10,8 +10,8 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Dandiego
+ * Ventana para el menú principal
+ * @author Daniel Granados Retana y Diego Granados Retana
  */
 public class Menu extends javax.swing.JFrame {
 

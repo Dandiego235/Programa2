@@ -16,14 +16,35 @@ public class Marca {
       private String nombre; // se almacena el nombre del jugador
       private int tiempo; // se almacena el tiempo del jugador
       private String nivel; // se almacena el nivel de la partida
-      public static ArrayList<Marca> marcasFaciles = new ArrayList<>(); // estos arraylists estáticos almacenan todas las marcas de su nivel
-      public static ArrayList<Marca> marcasIntermedias = new ArrayList<>();
-      public static ArrayList<Marca> marcasDificiles = new ArrayList<>();
-      public static HashMap<String,ArrayList<Marca>> marcas = new HashMap<>(); // Este hashmap se va a usar para obtener el arraylist dependiendo del nivel
+
+    /**
+     * ArrayList que almacena las marcas del nivel fácil
+     */
+    public static ArrayList<Marca> marcasFaciles = new ArrayList<>(); // estos arraylists estáticos almacenan todas las marcas de su nivel
+
+    /**
+     * ArrayList que almacena las marcas del nivel intermedio
+     */
+    public static ArrayList<Marca> marcasIntermedias = new ArrayList<>();
+
+    /**
+     * ArrayList que almacena las marcas del nivel difícil
+     */
+    public static ArrayList<Marca> marcasDificiles = new ArrayList<>();
+
+    /**
+     * HashMap que mapea los ArrayLists de cada nivel por un string con su nombre de nivel.
+     */
+    public static HashMap<String,ArrayList<Marca>> marcas = new HashMap<>(); // Este hashmap se va a usar para obtener el arraylist dependiendo del nivel
       
       private static ArrayList<String> strings = new ArrayList<>(); // este arraylist se usa para guardar las líneas leídas del archivo de top 10
       
-      // constructor de la clase
+    /**
+     * constructor de la clase
+     * @param pNombre
+     * @param pTiempo
+     * @param pNivel
+     */
       public Marca (String pNombre, Integer pTiempo,  String pNivel){
             nombre = pNombre;
             tiempo = pTiempo;
@@ -31,7 +52,9 @@ public class Marca {
             
       }
 
-      // esta función crea el hashmap que contiene los arraylist de marcas y se lee el archivo con el top 10 
+    /**
+     * esta función crea el hashmap que contiene los arraylist de marcas y se lee el archivo con el top 10 
+     */
       public static void createHashMap(){
             marcas.put("Fácil", marcasFaciles);
             marcas.put("Intermedio", marcasIntermedias);
@@ -58,27 +81,52 @@ public class Marca {
                   System.out.println("ERROR: NO SE PUEDE LEER ESTE ARCHIVO.");
             }
       }
-      public String getNivel() {
+
+    /**
+     * Obtiene el nivel de la marca
+     * @return nivel
+     */
+    public String getNivel() {
             return nivel;
       }
 
-      public void setNivel(String nivel) {
+    /**
+     * Establece el nivel de la marca
+     * @param nivel
+     */
+    public void setNivel(String nivel) {
             this.nivel = nivel;
       }
 
-      public String getNombre() {
+    /**
+     * Obtiene el nombre de la marca
+     * @return nombre
+     */
+    public String getNombre() {
             return nombre;
       }
 
-      public int getTiempo() {
+    /**
+     * Obtiene el nombre del tiempo
+     * @return tiempo
+     */
+    public int getTiempo() {
             return tiempo;
       }
 
-      public void setNombre(String nombre) {
+    /**
+     * Establece el nombre de la marca
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
             this.nombre = nombre;
       }
 
-      public void setTiempo(int tiempo) {
+    /**
+     * Establece el tiempo de la marca
+     * @param tiempo
+     */
+    public void setTiempo(int tiempo) {
             this.tiempo = tiempo;
       }
       
@@ -123,7 +171,6 @@ public class Marca {
               time += "0";
          }
          time +=Integer.toString(seconds);
-         
          
          return time;         
     }      

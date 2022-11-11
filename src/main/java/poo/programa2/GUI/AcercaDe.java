@@ -5,8 +5,8 @@
 package poo.programa2.GUI;
 
 /**
- *
- * @author dandi
+ * Pantalla para el acerca de del programa
+ * @author Diego Granados Retana
  */
 public class AcercaDe extends javax.swing.JFrame {
 

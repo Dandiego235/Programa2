@@ -5,28 +5,47 @@
 package poo.programa2;
 
 /**
- *
- * @author dandi
+ * Esta clase representa una jugada hecha por el jugador, con el número puesto en una fila y columna.
+ * @author Daniel Granados Retana y Diego Granados Retana
  */
 public class Jugada {
       private int fila;
       private int columna;
       private String numero;
-      public Jugada(int pFila, int pColumna, String pNumero){
+
+    /**
+     * Constructor
+     * @param pFila
+     * @param pColumna
+     * @param pNumero
+     */
+    public Jugada(int pFila, int pColumna, String pNumero){
             fila = pFila;
             columna = pColumna;
             numero = pNumero;
       }
 
-      public int getFila() {
+    /**
+     * Obtiene la fila de la jugada realizada
+     * @return fila
+     */
+    public int getFila() {
             return fila;
       }
 
-      public int getColumna() {
+    /**
+     * Obtiene la columna de la jugada realizada
+     * @return columna
+     */
+    public int getColumna() {
             return columna;
       }
 
-      public String getNumero() {
+    /**
+     * Obtiene el numero de la jugada realizada
+     * @return numero
+     */
+    public String getNumero() {
             return numero;
       }
       
