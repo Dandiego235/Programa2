@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package poo.programa2;
+package poo.programa3;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.util.*;
 import javax.swing.JOptionPane;
-import poo.programa2.GUI.JugarFrame;
+import poo.programa3.GUI.JugarFrame;
 /**
  * Esta clase se usa para representar un juego de futoshiki.
  * @author Daniel Granados Retana y Diego Granados Retana
@@ -223,7 +223,7 @@ public class Juego {
                                     if ("Sí".equals(Configuracion.getReloj()) || "Timer".equals(Configuracion.getReloj())){
                                           JugarFrame.stopwatch.stop();
                                     }
-                                    JOptionPane.showMessageDialog(window, "JUGADA NO ES VÁLIDA PORQUE NO CUMPLE CON LA RESTRICCIÓN DE MENOR.", 
+                                     JOptionPane.showMessageDialog(window, "JUGADA NO ES VÁLIDA PORQUE NO CUMPLE CON LA RESTRICCIÓN DE MENOR.", 
                                     "Error", JOptionPane.ERROR_MESSAGE);
                                     if ("Sí".equals(Configuracion.getReloj()) || "Timer".equals(Configuracion.getReloj())){
                                           JugarFrame.stopwatch.start();
@@ -262,6 +262,10 @@ public class Juego {
                                 "Error", JOptionPane.ERROR_MESSAGE);
                         return;
             }
+      }
+      
+      public javax.swing.JButton [][] getCasillas(){
+            return casillas;
       }
       
     /**

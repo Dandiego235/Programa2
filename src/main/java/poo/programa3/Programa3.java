@@ -3,14 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package poo.programa2;
-import poo.programa2.GUI.Menu;
+package poo.programa3;
+import poo.programa3.GUI.Menu;
    
 /**
  * Programa 2 de POO. Futushiki
  * @author Daniel Granados Retana, carné 2022104692, y Diego Granados Retana, carné 2022158363
  */
-public class Programa2 {
+public class Programa3 {
 
     public static void main(String[] args) {
         Partida.leerPartidas();

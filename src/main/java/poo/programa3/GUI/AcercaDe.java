@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package poo.programa2.GUI;
+package poo.programa3.GUI;
 
 /**
  * Pantalla para el acerca de del programa
@@ -48,38 +48,31 @@ public class AcercaDe extends javax.swing.JFrame {
 
             jLabel2.setBackground(new java.awt.Color(255, 204, 204));
             jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-            jLabel2.setForeground(new java.awt.Color(0, 0, 0));
             jLabel2.setText("Acerca de");
             jLabel2.setOpaque(true);
             jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
             jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            jLabel8.setForeground(new java.awt.Color(0, 0, 0));
             jLabel8.setText("Nombre del programa: Futoshiki");
             jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
             jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            jLabel5.setForeground(new java.awt.Color(0, 0, 0));
             jLabel5.setText("Autores:");
             jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
             jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            jLabel3.setForeground(new java.awt.Color(0, 0, 0));
             jLabel3.setText("Daniel Granados");
             jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 218, -1));
 
             jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            jLabel4.setForeground(new java.awt.Color(0, 0, 0));
             jLabel4.setText("Diego Granados");
             jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
 
             jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            jLabel6.setForeground(new java.awt.Color(0, 0, 0));
             jLabel6.setText("Versión: 1.0");
             jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
             jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-            jLabel7.setForeground(new java.awt.Color(0, 0, 0));
             jLabel7.setText("Fecha de creación: 7 de noviembre, 2022");
             jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 

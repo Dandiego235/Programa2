@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package poo.programa2.GUI;
+package poo.programa3.GUI;
 
+import poo.programa3.Marca;
 import javax.swing.DefaultListModel;
-import poo.programa2.*;
 
 /**
  * Ventana para el Top 10
@@ -120,7 +120,6 @@ public class Top10Frame extends javax.swing.JFrame {
 
             jLabel1.setBackground(new java.awt.Color(255, 255, 0));
             jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-            jLabel1.setForeground(new java.awt.Color(0, 0, 0));
             jLabel1.setText("Top 10");
             jLabel1.setOpaque(true);
             getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, -1, -1));

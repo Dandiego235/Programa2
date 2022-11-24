@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package poo.programa2;
+package poo.programa3;
 
 /**
  * Clase para guardar los parámetros de la configuración.
@@ -13,6 +13,7 @@ public class Configuracion {
     private static String nivel = "Fácil";
     private static String reloj = "Sí";
     private static boolean lado = true; // true es derecha e izquierda es false
+    private static int tamaño = 5;
 
     /**
      * Retorna el nivel
@@ -36,6 +37,14 @@ public class Configuracion {
      */
     public static String getReloj() {
         return reloj;
+    }
+    
+    public static int getTamaño(){
+          return tamaño;
+    }
+    
+    public static void setTamaño(int pTamaño){
+          tamaño = pTamaño;
     }
 
     /**
